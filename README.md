@@ -4,15 +4,16 @@
  Project Overview
 
  Idea
-- Help users discover nearby places, food spots, and hidden gems recommended by locals  
-- Make it easy to find local events like jatras, concerts, and markets  
-- Connect users with local guides or students for a more personal experience  
-- Help users understand government services in a simple way  
-- Guide users with documents, steps, and requirements before visiting offices  
-- Show all fees clearly to avoid confusion or hidden costs  
+-A webapp that helps citizens easily access government services
+-Combines office locator, document guidance, and form assistance in one place
+-Reduces confusion, time waste, and repeated visits to government offices
 
  What It Does
-This app combines local discovery and government service guidance in one platform. It helps users explore nearby places and events while also making government processes easier to understand and follow step by step.
+-finds nearby government offices (passport, citizenship, license, etc.)
+ -Shows required documents for each service
+ -Provides and explains official forms
+-Gives step-by-step guidance for completing processes
+-Displays office hours and basic contact info
 
  Why It Is Useful
 - Saves time by giving all information in one place  
@@ -22,12 +23,13 @@ This app combines local discovery and government service guidance in one platfor
 - Builds trust through reviews, clear steps, and transparent information  
 
  Who It Is For
-- Travelers and people exploring new places  
-- Locals looking for food, events, and hidden gems  
-- Students or guides helping others explore  
-- Citizens who need help with government services and processes  
-- 2.Tourism app
+- Citizens applying for government documents
+-Students and young adults (first-time applicants)
+-People in rural areas with limited access to information
+-Elderly users who need guidance with procedures
+-Anyone unfamiliar with government processes
 
+2.Tourism app
 
  Idea
 - Help users discover nearby places, food spots, and hidden gems recommended by locals  
