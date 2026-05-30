@@ -54,4 +54,6 @@ This app helps users find places, food, and events nearby in one place. It also 
 - Students or guides who want to help others  
 - People new to an area  
 - Locals looking for events and food spots  
-- Students or guides who want to help others  
+- Students or guides who want to help others
+
+- [View Figma Design](https://www.figma.com/make/YtMafN7T2haDkbREyccTT8/Government-Services-Website?fullscreen=1&t=ubyqgxfhHuTF7CV0-1&code-node-id=0-9)
