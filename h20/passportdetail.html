@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Directory</title>
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003893; /* Dark Powder Blue */
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Department Grid Container */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Department Card Styling */
+        .card {
+            background-color: #FFFFFF; /* White */
+            border: 2px solid #003893; /* Dark Powder Blue Border */
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 56, 147, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 56, 147, 0.2);
+        }
+
+        /* Room Badge Styling */
+        .room-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #DC143C; /* Crimson Red */
+            color: #FFFFFF; /* White text */
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(220, 20, 60, 0.3);
+        }
+
+        /* Headings */
+        .card h2 {
+            font-size: 1.35rem;
+            color: #003893; /* Dark Powder Blue */
+            margin: 0 0 16px 0;
+            padding-right: 75px; /* Prevent overlap with room badge */
+            line-height: 1.3;
+            border-bottom: 2px solid #f0f4f8;
+            padding-bottom: 10px;
+        }
+
+        /* Card Text Elements */
+        .card p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card strong {
+            color: #444444;
+        }
+
+        .services-text {
+            color: #DC143C; /* Crimson Red text for visibility */
+            font-weight: 500;
+        }
+
+        /* Contact Info Block */
+        .contact-info {
+            margin-top: auto; /* Pushes contact info to the bottom of the card */
+            padding-top: 14px;
+            border-top: 1px dashed #003893;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: #003893; /* Dark Powder Blue links */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: #DC143C; /* Crimson Red on hover */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Department Directory</h1>
+
+    <div class="department-grid">
+
+        <div class="card">
+            <span class="room-badge">Rm 101</span>
+            <h2>Reception & Help Desk</h2>
+            <p><strong>Services:</strong> <span class="services-text">General Inquiry, Token Distribution, Visitor Guidance</span></p>
+            <p><strong>HOD:</strong> Anita Sharma</p>
+            <p><strong>Position:</strong> Front Office Supervisor</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100101</p>
+                <p><strong>Email:</strong> <a href="mailto:helpdesk@passport.gov.np">helpdesk@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 102</span>
+            <h2>New Passport Application</h2>
+            <p><strong>Services:</strong> <span class="services-text">First-Time Passport Application Processing</span></p>
+            <p><strong>HOD:</strong> Ramesh Adhikari</p>
+            <p><strong>Position:</strong> Passport Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100102</p>
+                <p><strong>Email:</strong> <a href="mailto:newpassport@passport.gov.np">newpassport@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 103</span>
+            <h2>Passport Renewal Section</h2>
+            <p><strong>Services:</strong> <span class="services-text">Passport Renewal and Information Update</span></p>
+            <p><strong>HOD:</strong> Sushil Karki</p>
+            <p><strong>Position:</strong> Senior Passport Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100103</p>
+                <p><strong>Email:</strong> <a href="mailto:renewal@passport.gov.np">renewal@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 104</span>
+            <h2>Lost & Damaged Passport Section</h2>
+            <p><strong>Services:</strong> <span class="services-text">Lost Passport Replacement, Damaged Passport Cases</span></p>
+            <p><strong>HOD:</strong> Hari Prasad Gautam</p>
+            <p><strong>Position:</strong> Case Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100104</p>
+                <p><strong>Email:</strong> <a href="mailto:replacement@passport.gov.np">replacement@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 105</span>
+            <h2>Document Verification Room</h2>
+            <p><strong>Services:</strong> <span class="services-text">Citizenship Verification, Supporting Document Validation</span></p>
+            <p><strong>HOD:</strong> Prakash Thapa</p>
+            <p><strong>Position:</strong> Verification Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100105</p>
+                <p><strong>Email:</strong> <a href="mailto:verification@passport.gov.np">verification@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 106</span>
+            <h2>Payment Counter</h2>
+            <p><strong>Services:</strong> <span class="services-text">Passport Fee Collection and Payment Verification</span></p>
+            <p><strong>HOD:</strong> Nabin Shrestha</p>
+            <p><strong>Position:</strong> Finance Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100106</p>
+                <p><strong>Email:</strong> <a href="mailto:payment@passport.gov.np">payment@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 107</span>
+            <h2>Biometric Enrollment Room</h2>
+            <p><strong>Services:</strong> <span class="services-text">Photograph, Fingerprint and Signature Capture</span></p>
+            <p><strong>HOD:</strong> Sunita KC</p>
+            <p><strong>Position:</strong> Biometric Supervisor</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100107</p>
+                <p><strong>Email:</strong> <a href="mailto:biometric@passport.gov.np">biometric@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 108</span>
+            <h2>Minor Passport Services</h2>
+            <p><strong>Services:</strong> <span class="services-text">Passport Services for Children and Minors</span></p>
+            <p><strong>HOD:</strong> Maya Acharya</p>
+            <p><strong>Position:</strong> Child Services Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100108</p>
+                <p><strong>Email:</strong> <a href="mailto:minor@passport.gov.np">minor@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 109</span>
+            <h2>Emergency Passport Services</h2>
+            <p><strong>Services:</strong> <span class="services-text">Urgent and Fast-Track Passport Processing</span></p>
+            <p><strong>HOD:</strong> Rajan Sharma</p>
+            <p><strong>Position:</strong> Emergency Service Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100109</p>
+                <p><strong>Email:</strong> <a href="mailto:emergency@passport.gov.np">emergency@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 110</span>
+            <h2>Passport Collection Counter</h2>
+            <p><strong>Services:</strong> <span class="services-text">Passport Collection and Distribution</span></p>
+            <p><strong>HOD:</strong> Deepa Koirala</p>
+            <p><strong>Position:</strong> Distribution Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100110</p>
+                <p><strong>Email:</strong> <a href="mailto:collection@passport.gov.np">collection@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 201</span>
+            <h2>Administration Office</h2>
+            <p><strong>Services:</strong> <span class="services-text">Office Administration and Human Resources</span></p>
+            <p><strong>HOD:</strong> Kiran Joshi</p>
+            <p><strong>Position:</strong> Administrative Chief</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100201</p>
+                <p><strong>Email:</strong> <a href="mailto:admin@passport.gov.np">admin@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 202</span>
+            <h2>Director General Office</h2>
+            <p><strong>Services:</strong> <span class="services-text">Executive Management and Policy Decisions</span></p>
+            <p><strong>HOD:</strong> Dr. Ram Bahadur Khadka</p>
+            <p><strong>Position:</strong> Director General</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100202</p>
+                <p><strong>Email:</strong> <a href="mailto:dg@passport.gov.np">dg@passport.gov.np</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="room-badge">Rm 203</span>
+            <h2>Complaint & Grievance Desk</h2>
+            <p><strong>Services:</strong> <span class="services-text">Complaints, Suggestions and Service Feedback</span></p>
+            <p><strong>HOD:</strong> Sarita Bhandari</p>
+            <p><strong>Position:</strong> Public Relations Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4100203</p>
+                <p><strong>Email:</strong> <a href="mailto:complaints@passport.gov.np">complaints@passport.gov.np</a></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Sewa – Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #eef2fb;
+  color: #111827;
+  min-height: 100vh;
+}
+
+.topbar {
+  background: #002868;
+  color: rgba(255,255,255,0.88);
+  padding: 9px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.topbar-left { display: flex; align-items: center; gap: 8px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.topbar-right button {
+  background: none; border: none; color: rgba(255,255,255,0.82);
+  cursor: pointer; font-size: 13px; font-family: inherit;
+  transition: color 0.15s;
+}
+.topbar-right button:hover { color: white; }
+.topbar-sep { color: rgba(255,255,255,0.3); }
+
+/* ── HEADER ── */
+.site-header {
+  background: #ffffff;
+  box-shadow: 0 1px 0 #e5e7eb, 0 2px 12px rgba(0,0,0,0.05);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 1280px; margin: auto;
+  padding: 0 40px; height: 70px;
+  display: flex; align-items: center; gap: 32px;
+}
+
+/* logo */
+.logo-link {
+  text-decoration: none;
+  display: flex; align-items: center; gap: 13px;
+  flex-shrink: 0;
+}
+.logo-circle {
+  width: 46px; height: 46px;
+  background: #003893;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 21px; font-weight: 700;
+}
+.logo-texts { display: flex; flex-direction: column; gap: 1px; }
+.logo-en { font-size: 16.5px; font-weight: 700; color: #111827; letter-spacing: -0.01em; }
+.logo-ne {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 12px; font-weight: 600; color: #dc143c;
+}
+
+/* nav */
+nav { display: flex; gap: 6px; }
+nav a {
+  text-decoration: none; color: #374151;
+  font-size: 14.5px; font-weight: 500;
+  padding: 5px 11px; border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+nav a:hover { color: #003893; background: #eef4ff; }
+nav a.active { color: #003893; font-weight: 600; }
+
+/* search */
+.header-search {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  background: #f3f4f6;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 50px;
+  padding: 8px 18px;
+  min-width: 210px;
+  transition: border-color 0.2s;
+}
+.header-search:focus-within { border-color: #93aee8; }
+.header-search input {
+  border: none; background: transparent; outline: none;
+  font-family: inherit; font-size: 14px; color: #111827; width: 100%;
+}
+.header-search input::placeholder { color: #9ca3af; }
+
+/* login btn */
+.btn-login {
+  background: #1e3a8a; color: white;
+  border: none; border-radius: 9px;
+  padding: 10px 22px;
+  font-family: inherit; font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.btn-login:hover { background: #002868; }
+
+/* ── PAGE BODY ── */
+.page {
+  padding: 68px 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  text-align: center;
+  font-size: 13px; font-weight: 700;
+  color: #1e3a8a;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 44px; font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+}
+
+.main-sub {
+  text-align: center;
+  font-size: 15.5px; color: #6b7280;
+  line-height: 1.65;
+  max-width: 540px;
+  margin: 0 auto 52px;
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 44px;
+}
+
+/* ── CARD ── */
+.card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 30px 28px 26px;
+  border: 1px solid rgba(0,0,0,0.055);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex; flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.09);
+}
+
+.icon-bubble {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px; flex-shrink: 0;
+}
+.bubble-blue   { background: #dce7f8; }
+.bubble-red    { background: #fde3e7; }
+.bubble-purple { background: #ede8fc; }
+
+.card-name {
+  font-size: 20px; font-weight: 700;
+  color: #0f172a; margin-bottom: 4px;
+}
+.card-nepali {
+  font-family: 'Noto Sans Devanagari', 'Mangal', sans-serif;
+  font-size: 13px; font-weight: 600;
+  color: #c0182e; margin-bottom: 14px;
+}
+.card-desc {
+  font-size: 14.5px; color: #6b7280;
+  line-height: 1.65; flex: 1; margin-bottom: 22px;
+}
+.card-footer {
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+.card-time {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 13px; color: #9ca3af;
+}
+.card-link {
+  text-decoration: none;
+  font-size: 14px; font-weight: 700; color: #1e3a8a;
+  display: flex; align-items: center; gap: 3px;
+  transition: gap 0.15s;
+}
+.card-link:hover { gap: 7px; }
+
+/* ── BUTTON ── */
+.btn-wrap { display: flex; justify-content: center; }
+.btn-all {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 2px solid #1e3a8a; background: transparent;
+  color: #1e3a8a;
+  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  padding: 13px 36px; border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+.btn-all:hover { background: #1e3a8a; color: white; transform: translateY(-1px); }
+.btn-badge {
+  background: #dde7f8; color: #1e3a8a;
+  font-size: 12px; font-weight: 700;
+  padding: 2px 9px; border-radius: 12px;
+  transition: background 0.18s, color 0.18s;
+}
+.btn-all:hover .btn-badge { background: rgba(255,255,255,0.2); color: white; }
+
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2,1fr); } nav { display: none; } }
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .main-title { font-size: 32px; } .page { padding: 40px 20px 60px; } }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Official portal of the Federal Democratic Republic of Nepal
+  </div>
+  <div class="topbar-right">
+    <button>English</button>
+    <span class="topbar-sep">|</span>
+    <button>&#x928;&#x947;&#x92A;&#x93E;&#x932;&#x940;</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a class="logo-link" href="#">
+      <div class="logo-circle">&#x928;</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">&#x928;&#x947;&#x92A;&#x93E;&#x932; &#x938;&#x930;&#x915;&#x93E;&#x930;</span>
+      </div>
+    </a>
+
+<nav>
+   <a href="page1-hero.html" class="active">Home</a> 
+  <a href="page2-services.html">Services</a>
+   <a href="page3-offices.html">Offices</a>
+    <a href="page4-form.html">Forms</a> 
+    <a href="page5-guidance.html">Guidance</a> 
+    <a href="page6-testimonials.html">Contact</a> 
+  </nav>
+  
+    <div class="header-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search services...">
+    </div>
+
+    <button class="btn-login">Login / Register</button>
+
+  </div>
+</header>
+
+<!-- SERVICES -->
+<div class="page">
+
+  <div class="eyebrow">Popular Services</div>
+  <h2 class="main-title">Government Services</h2>
+  <p class="main-sub">Select a service below to view requirements, forms, office locations, and step-by-step process guides.</p>
+
+  <div class="grid">
+
+    <!-- PASSPORT -->
+    <div class="card">
+      <div class="icon-bubble bubble-blue">
+       
+          <rect x="5" y="2" width="14" height="20" rx="2"/>
+          <line x1="9" y1="7" x2="15" y2="7"/>
+          <line x1="9" y1="11" x2="15" y2="11"/>
+          <line x1="9" y1="15" x2="12" y2="15"/>
+        </svg>
+      </div>
+      <div class="card-name">Passport</div>
+      <div class="card-nepali">&#x930;&#x93E;&#x939;&#x926;&#x93E;&#x928;&#x940;</div>
+      <div class="card-desc">Apply for new passport or renew your existing travel document.</div>
+      <div class="card-footer">
+        <div class="card-time">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          7–15 working days
+        </div>
+        <a href="#" class="card-link">View Process &rsaquo;</a>
+      </div>
+    </div>
+
+    <!-- CITIZENSHIP -->
+    <div class="card">
+      <div class="icon-bubble bubble-red">
+        
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="card-name">Citizenship</div>
+      <div class="card-nepali">&#x928;&#x93E;&#x917;&#x930;&#x93F;&#x915;&#x924;&#x93E;</div>
+      <div class="card-desc">Obtain or update your citizenship certificate and records.</div>
+      <div class="card-footer">
+        <div class="card-time">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          3–7 working days
+        </div>
+        <a href="#" class="card-link">View Process &rsaquo;</a>
+      </div>
+    </div>
+
+    <!-- DRIVING LICENSE -->
+    <div class="card">
+      <div class="icon-bubble bubble-purple">
+        
+          <rect x="1" y="8" width="22" height="12" rx="2"/>
+          <path d="M5 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/>
+          <circle cx="7.5" cy="14.5" r="1.5"/>
+          <circle cx="16.5" cy="14.5" r="1.5"/>
+        </svg>
+      </div>
+      <div class="card-name">Driving License</div>
+      <div class="card-nepali">&#x938;&#x935;&#x93E;&#x930;&#x940; &#x91A;&#x93E;&#x932;&#x915; &#x905;&#x928;&#x941;&#x92E;&#x924;&#x93F;&#x92A;&#x924;&#x94D;&#x930;</div>
+      <div class="card-desc">Apply, renew, or upgrade your driving licence easily.</div>
+      <div class="card-footer">
+        <div class="card-time">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          14–21 working days
+        </div>
+        <a href="#" class="card-link">View Process &rsaquo;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn-wrap">
+    <button class="btn-all">
+      View All Services
+      <span class="btn-badge">15</span>
+      →
+    </button>
+  </div>
+
+</div>
+</body>
+</html>

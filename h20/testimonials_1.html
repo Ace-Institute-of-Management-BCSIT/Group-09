@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Sewa – Announcements & Updates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #eef2fb;
+  color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: #002868;
+  color: rgba(255,255,255,0.88);
+  padding: 9px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.topbar-left { display: flex; align-items: center; gap: 8px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.topbar-right button {
+  background: none; border: none; color: rgba(255,255,255,0.82);
+  cursor: pointer; font-size: 13px; font-family: inherit;
+  transition: color 0.15s;
+}
+.topbar-right button:hover { color: white; }
+.topbar-sep { color: rgba(255,255,255,0.3); }
+
+/* ── HEADER ── */
+.site-header {
+  background: #ffffff;
+  box-shadow: 0 1px 0 #e5e7eb, 0 2px 12px rgba(0,0,0,0.05);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 1400px; margin: auto;
+  padding: 0 40px; height: 70px;
+  display: flex; align-items: center; gap: 32px;
+}
+
+/* logo */
+.logo-link {
+  text-decoration: none;
+  display: flex; align-items: center; gap: 13px;
+  flex-shrink: 0;
+}
+.logo-circle {
+  width: 46px; height: 46px;
+  background: #003893;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 21px; font-weight: 700;
+}
+.logo-texts { display: flex; flex-direction: column; gap: 1px; }
+.logo-en { font-size: 16.5px; font-weight: 700; color: #111827; letter-spacing: -0.01em; }
+.logo-ne {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 12px; font-weight: 600; color: #dc143c;
+}
+
+/* nav */
+nav { display: flex; gap: 6px; }
+nav a {
+  text-decoration: none; color: #374151;
+  font-size: 14.5px; font-weight: 500;
+  padding: 5px 11px; border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+nav a:hover { color: #003893; background: #eef4ff; }
+nav a.active { color: #003893; font-weight: 600; }
+
+/* search */
+.header-search {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  background: #f3f4f6;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 50px;
+  padding: 8px 18px;
+  min-width: 210px;
+  transition: border-color 0.2s;
+}
+.header-search:focus-within { border-color: #93aee8; }
+.header-search input {
+  border: none; background: transparent; outline: none;
+  font-family: inherit; font-size: 14px; color: #111827; width: 100%;
+}
+.header-search input::placeholder { color: #9ca3af; }
+
+/* login btn */
+.btn-login {
+  background: #1e3a8a; color: white;
+  border: none; border-radius: 9px;
+  padding: 10px 22px;
+  font-family: inherit; font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.btn-login:hover { background: #002868; }
+
+/* ── ANNOUNCEMENTS SECTION ── */
+.announcements-section {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 40px 80px 40px;
+  flex: 1;
+}
+
+
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.all-link {
+  text-decoration: none;
+  color: #003893;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.all-link:hover {
+  color: #002868;
+  text-decoration: underline;
+}
+
+.notice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.notice-card {
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.notice-tag,
+.deadline-tag,
+.update-tag {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.notice-tag {
+  background: #eef4ff;
+  color: #003893;
+}
+
+.deadline-tag {
+  background: #fff1ea;
+  color: #ff6b35;
+}
+
+.update-tag {
+  background: #e9f8ef;
+  color: #00875a;
+}
+
+.date {
+  color: #6b7280;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.notice-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.notice-card p {
+  color: #4b5563;
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.notice-card a {
+  color: #003893;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  transition: color 0.15s;
+}
+
+.notice-card a:hover {
+  color: #002868;
+  text-decoration: underline;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #001f54;
+  color: #ffffff;
+  padding: 80px 40px 50px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 20px;
+}
+
+.logo-box-footer {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #003893;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.footer-logo h3 {
+  color: #fff;
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.footer-logo span {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  color: #dc143c;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  margin-top: 1px;
+}
+
+.footer-about p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 340px;
+  margin-bottom: 25px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+  background: #003893;
+  transform: translateY(-2px);
+}
+
+.footer-column h4 {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+}
+
+.footer-column a {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14.5px;
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: color 0.15s, padding-left 0.15s;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+/* ── RESPONSIVE MEDIA QUERIES ── */
+@media (max-width: 1200px) {
+  .notice-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .footer-container { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  nav { display: none; }
+  .header-search { margin-left: auto; }
+}
+
+@media (max-width: 768px) {
+  .notice-grid { grid-template-columns: 1fr; }
+  .footer-container { grid-template-columns: 1fr; gap: 40px; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .section-header h2 { font-size: 30px; }
+  .announcements-section { padding: 40px 20px 60px 20px; }
+  .footer { padding: 60px 20px 40px; }
+  .header-inner { padding: 0 20px; gap: 16px; }
+  .topbar { padding: 9px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    Official portal of the Federal Democratic Republic of Nepal
+  </div>
+  <div class="topbar-right">
+    <button>English</button>
+    <span class="topbar-sep">|</span>
+    <button>नेपाली</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <a class="logo-link" href="#">
+      <div class="logo-circle">ने</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">नेपाल सरकार</span>
+      </div>
+    </a>
+
+ <nav>
+   <a href="homepage.html" class="active">Home</a> 
+  <a href="services.html">Services</a>
+   <a href="offices.html">Offices</a>
+    <a href="form.html">Forms</a> 
+    <a href="guidance.html">Guidance</a> 
+    <a href="testimonials.html">Contact</a> 
+  </nav>
+    
+    <div class="header-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search services...">
+    </div>
+
+    <button class="btn-login">Login / Register</button>
+
+  </div>
+</header>
+
+<main class="announcements-section">
+
+    
+
+    <div class="section-header">
+        <div>
+            <h2>Public Notices & Updates</h2>
+        </div>
+       
+    <div class="notice-grid">
+
+        <div class="notice-card">
+            <div class="card-top">
+                <span class="notice-tag">Passport</span>
+                <span class="date"><i class="fa-regular fa-calendar"></i> 19 Jestha 2082</span>
+            </div>
+            <h3>Online Passport Renewal Now Available Nationwide</h3>
+            <p>
+                Citizens can now apply for passport renewal online. Biometric verification remains mandatory at designated passport offices.
+            </p>
+            <a href="#">Read full notice <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i></a>
+        </div>
+
+        <div class="notice-card">
+            <div class="card-top">
+                <span class="deadline-tag">Citizenship</span>
+                <span class="date"><i class="fa-regular fa-calendar"></i> 12 Jestha 2082</span>
+            </div>
+            <h3>Citizenship Certificate Process Updated</h3>
+            <p>
+                Applicants are advised to review the revised citizenship application requirements and document checklist before submission.
+            </p>
+            <a href="#">Read full notice <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i></a>
+        </div>
+
+        <div class="notice-card">
+            <div class="card-top">
+                <span class="update-tag">License</span>
+                <span class="date"><i class="fa-regular fa-calendar"></i> 05 Jestha 2082</span>
+            </div>
+            <h3>New Driving License Trial Schedule Published</h3>
+            <p>
+                The Department of Transport Management has released updated trial examination schedules and online booking procedures.
+            </p>
+            <a href="#">Read full notice <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i></a>
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-about">
+            <div class="footer-logo">
+                <div class="logo-box-footer">ने</div>
+                <div>
+                    <h3>Government Sewa</h3>
+                    <span>नेपाल सरकार — आधिकारिक पोर्टल</span>
+                </div>
+            </div>
+            <p>
+                The official digital assistance platform of the Federal Democratic Republic of Nepal. Serving across Kathmandu Valley.
+            </p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4>SERVICES</h4>
+            <a href="#">Passport</a>
+            <a href="#">Citizenship</a>
+            <a href="#">Driving License</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>INFORMATION</h4>
+            <a href="#">Office Locator</a>
+            <a href="#">Download Forms</a>
+            <a href="#">Document Checklist</a>
+            <a href="#">Process Guide</a>
+            <a href="#">FAQ</a>
+            <a href="#">Track Application</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>GOVERNMENT</h4>
+            <a href="#">Ministries</a>
+            <a href="#">Departments</a>
+            <a href="#">Local Offices</a>
+            <a href="#">Announcements</a>
+            <a href="#">Open Data</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

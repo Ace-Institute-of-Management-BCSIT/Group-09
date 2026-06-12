@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Licence Department Directory</title>
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 40px 20px;
+            color: #333333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003893; /* Dark Powder Blue */
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Department Grid Container */
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Department Card Styling */
+        .card {
+            background-color: #FFFFFF; /* White */
+            border: 2px solid #003893; /* Dark Powder Blue Border */
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 56, 147, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 56, 147, 0.2);
+        }
+
+        /* Room Badge Styling */
+        .room-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #DC143C; /* Crimson Red */
+            color: #FFFFFF; /* White text */
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(220, 20, 60, 0.3);
+        }
+
+        /* Headings */
+        .card h2 {
+            font-size: 1.35rem;
+            color: #003893; /* Dark Powder Blue */
+            margin: 0 0 16px 0;
+            padding-right: 75px; /* Prevent overlap with room badge */
+            line-height: 1.3;
+            border-bottom: 2px solid #f0f4f8;
+            padding-bottom: 10px;
+        }
+
+        /* Card Text Elements */
+        .card p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card strong {
+            color: #444444;
+        }
+
+        .services-text {
+            color: #DC143C; /* Crimson Red text */
+            font-weight: 500;
+        }
+
+        /* Contact Info Block */
+        .contact-info {
+            margin-top: auto; /* Pushes contact info to the bottom of the card */
+            padding-top: 14px;
+            border-top: 1px dashed #003893;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: #003893; /* Dark Powder Blue links */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .contact-info a:hover {
+            color: #DC143C; /* Crimson Red on hover */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Driving Licence Department Directory</h1>
+
+    <div class="department-grid">
+
+        <!-- Room 101 -->
+        <div class="card">
+            <span class="room-badge">Rm 101</span>
+            <h2>Reception & Help Desk</h2>
+            <p><strong>Services:</strong> <span class="services-text">General Inquiry, Token Distribution, Application Guidance</span></p>
+            <p><strong>HOD:</strong> Anita Sharma</p>
+            <p><strong>Position:</strong> Front Office Supervisor</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300101</p>
+                <p><strong>Email:</strong> <a href="mailto:helpdesk@licence.gov.np">helpdesk@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 102 -->
+        <div class="card">
+            <span class="room-badge">Rm 102</span>
+            <h2>New Licence Application</h2>
+            <p><strong>Services:</strong> <span class="services-text">New Driving Licence Registration and Application Processing</span></p>
+            <p><strong>HOD:</strong> Ramesh Adhikari</p>
+            <p><strong>Position:</strong> Licensing Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300102</p>
+                <p><strong>Email:</strong> <a href="mailto:newlicence@licence.gov.np">newlicence@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 103 -->
+        <div class="card">
+            <span class="room-badge">Rm 103</span>
+            <h2>Licence Renewal Section</h2>
+            <p><strong>Services:</strong> <span class="services-text">Renewal of Expired and Expiring Driving Licences</span></p>
+            <p><strong>HOD:</strong> Sushil Karki</p>
+            <p><strong>Position:</strong> Senior Licensing Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300103</p>
+                <p><strong>Email:</strong> <a href="mailto:renewal@licence.gov.np">renewal@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 104 -->
+        <div class="card">
+            <span class="room-badge">Rm 104</span>
+            <h2>Duplicate Licence Section</h2>
+            <p><strong>Services:</strong> <span class="services-text">Lost, Damaged or Duplicate Licence Issuance</span></p>
+            <p><strong>HOD:</strong> Hari Prasad Gautam</p>
+            <p><strong>Position:</strong> Case Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300104</p>
+                <p><strong>Email:</strong> <a href="mailto:duplicate@licence.gov.np">duplicate@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 105 -->
+        <div class="card">
+            <span class="room-badge">Rm 105</span>
+            <h2>Document Verification Room</h2>
+            <p><strong>Services:</strong> <span class="services-text">Citizenship, Medical Report and Application Verification</span></p>
+            <p><strong>HOD:</strong> Prakash Thapa</p>
+            <p><strong>Position:</strong> Verification Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300105</p>
+                <p><strong>Email:</strong> <a href="mailto:verification@licence.gov.np">verification@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 106 -->
+        <div class="card">
+            <span class="room-badge">Rm 106</span>
+            <h2>Written Test Section</h2>
+            <p><strong>Services:</strong> <span class="services-text">Traffic Rules Examination and Evaluation</span></p>
+            <p><strong>HOD:</strong> Nabin Shrestha</p>
+            <p><strong>Position:</strong> Examination Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300106</p>
+                <p><strong>Email:</strong> <a href="mailto:writtenexam@licence.gov.np">writtenexam@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 107 -->
+        <div class="card">
+            <span class="room-badge">Rm 107</span>
+            <h2>Biometric Registration Room</h2>
+            <p><strong>Services:</strong> <span class="services-text">Photograph, Fingerprint and Signature Collection</span></p>
+            <p><strong>HOD:</strong> Sunita KC</p>
+            <p><strong>Position:</strong> Registration Supervisor</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300107</p>
+                <p><strong>Email:</strong> <a href="mailto:biometric@licence.gov.np">biometric@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 108 -->
+        <div class="card">
+            <span class="room-badge">Rm 108</span>
+            <h2>Trial Test Coordination Office</h2>
+            <p><strong>Services:</strong> <span class="services-text">Trial Scheduling, Candidate Registration and Results</span></p>
+            <p><strong>HOD:</strong> Maya Acharya</p>
+            <p><strong>Position:</strong> Trial Coordinator</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300108</p>
+                <p><strong>Email:</strong> <a href="mailto:trial@licence.gov.np">trial@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 109 -->
+        <div class="card">
+            <span class="room-badge">Rm 109</span>
+            <h2>Payment Counter</h2>
+            <p><strong>Services:</strong> <span class="services-text">Licence Fees Collection and Payment Verification</span></p>
+            <p><strong>HOD:</strong> Rajan Sharma</p>
+            <p><strong>Position:</strong> Finance Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300109</p>
+                <p><strong>Email:</strong> <a href="mailto:payment@licence.gov.np">payment@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 110 -->
+        <div class="card">
+            <span class="room-badge">Rm 110</span>
+            <h2>Licence Printing & Collection</h2>
+            <p><strong>Services:</strong> <span class="services-text">Smart Card Printing and Licence Distribution</span></p>
+            <p><strong>HOD:</strong> Deepa Koirala</p>
+            <p><strong>Position:</strong> Distribution Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300110</p>
+                <p><strong>Email:</strong> <a href="mailto:collection@licence.gov.np">collection@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 201 -->
+        <div class="card">
+            <span class="room-badge">Rm 201</span>
+            <h2>Administration Office</h2>
+            <p><strong>Services:</strong> <span class="services-text">Human Resources, Records and Administrative Affairs</span></p>
+            <p><strong>HOD:</strong> Kiran Joshi</p>
+            <p><strong>Position:</strong> Administrative Chief</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300201</p>
+                <p><strong>Email:</strong> <a href="mailto:admin@licence.gov.np">admin@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 202 -->
+        <div class="card">
+            <span class="room-badge">Rm 202</span>
+            <h2>Transport Director Office</h2>
+            <p><strong>Services:</strong> <span class="services-text">Policy Decisions, Supervision and Special Case Approval</span></p>
+            <p><strong>HOD:</strong> Dr. Ram Bahadur Khadka</p>
+            <p><strong>Position:</strong> Transport Director</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300202</p>
+                <p><strong>Email:</strong> <a href="mailto:director@licence.gov.np">director@licence.gov.np</a></p>
+            </div>
+        </div>
+
+        <!-- Room 203 -->
+        <div class="card">
+            <span class="room-badge">Rm 203</span>
+            <h2>Complaint & Grievance Desk</h2>
+            <p><strong>Services:</strong> <span class="services-text">Complaints, Appeals, Suggestions and Public Feedback</span></p>
+            <p><strong>HOD:</strong> Sarita Bhandari</p>
+            <p><strong>Position:</strong> Public Relations Officer</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> 01-4300203</p>
+                <p><strong>Email:</strong> <a href="mailto:complaints@licence.gov.np">complaints@licence.gov.np</a></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

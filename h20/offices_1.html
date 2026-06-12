@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Sewa – Office Locator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-primary: #1a3fa6;
+    --blue-mid:     #1535c9;
+    --blue-lighter: #e8eefb;
+    --red-text:     #c0392b;
+    --text-dark:    #0f1923;
+    --text-mid:     #334155;
+    --text-muted:   #64748b;
+    --text-light:   #94a3b8;
+    --border:       #e2e8f0;
+    --white:        #ffffff;
+    --gold:         #f59e0b;
+    --shadow-sm:    0 1px 3px rgba(0,0,0,0.07);
+    --shadow-md:    0 4px 16px rgba(0,0,0,0.10);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #f8fafc;
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: #003893;
+    color: #c8d8f8;
+    font-size: 12px;
+    padding: 6px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 7px; }
+  .topbar-globe { font-size: 13px; }
+  .topbar-right { display: flex; align-items: center; gap: 8px; }
+  .topbar-lang {
+    background: none;
+    border: none;
+    color: #c8d8f8;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+  }
+  .topbar-lang.active { color: #fff; font-weight: 700; }
+  .topbar-lang:hover { color: #fff; }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: #003893;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+  }
+  .logo-text-wrap { display: flex; flex-direction: column; line-height: 1.2; }
+  .logo-name { font-size: 15px; font-weight: 800; color: var(--text-dark); }
+  .logo-nepali { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 11px; color: var(--text-muted); }
+
+  nav { display: flex; align-items: center; gap: 4px; flex: 1; }
+  nav a {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav a:hover { background: var(--blue-lighter); color: var(--blue-primary); }
+  nav a.active { color: var(--blue-primary); background: var(--blue-lighter); }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+    width: 200px;
+  }
+  .search-icon { font-size: 14px; color: var(--text-light); }
+  .header-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text-mid);
+    width: 100%;
+  }
+  .header-search input::placeholder { color: var(--text-light); }
+
+  .btn-login {
+    background: var(--blue-primary);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  .btn-login:hover { background: var(--blue-mid); }
+
+  /* ── MAIN SECTION ── */
+  .offices-section {
+    padding: 60px 2rem 80px;
+  }
+  .offices-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ── LEFT ── */
+  .office-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fde8e8;
+    color: var(--red-text);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 13px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .offices-h2 {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .offices-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 28px;
+    max-width: 380px;
+  }
+
+  .office-search-bar {
+    display: flex;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+  }
+  .office-search-icon-wrap {
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 15px;
+  }
+  .office-search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-mid);
+    padding: 13px 4px;
+    background: transparent;
+  }
+  .office-search-bar input::placeholder { color: var(--text-light); }
+  .office-search-btn {
+    background: var(--blue-primary);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 26px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .office-search-btn:hover { background: var(--blue-mid); }
+
+  /* ── MAP CARD ── */
+  .nepal-map-card {
+    background: linear-gradient(135deg, #eef2fb 0%, #dce8f8 100%);
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    min-height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c8d9f0;
+  }
+  .nepal-map-svg { width: 100%; max-width: 480px; }
+
+  /* Map elements interactive cursor */
+  .nepal-map-svg text, .nepal-map-svg circle {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease, fill 0.2s ease;
+  }
+  .nepal-map-svg text:hover {
+    fill: var(--blue-mid);
+    font-weight: bold;
+  }
+  .nepal-map-svg circle:hover {
+    transform: scale(1.2);
+    transform-origin: center;
+  }
+
+  .map-legend {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 7px 13px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .legend-dot.red  { background: #DC143C; }
+  .legend-dot.blue { background: var(--blue-primary); }
+
+  /* ── RIGHT ── */
+  .nearby-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .nearby-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+  .view-all-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue-primary);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .view-all-link:hover { text-decoration: underline; }
+
+  .office-cards { display: flex; flex-direction: column; gap: 16px; }
+
+  /* No Results Element styling */
+  .no-results {
+    background: var(--white);
+    border: 1px dashed var(--border);
+    border-radius: 14px;
+    padding: 40px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    display: none;
+  }
+
+  /* ── OFFICE CARD ── */
+  .office-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    transition: box-shadow 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s;
+  }
+  .office-card:hover { box-shadow: var(--shadow-md); border-color: #c5d4ee; }
+
+  .office-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    gap: 10px;
+  }
+  .office-card-name-row { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .office-card-name {
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+  .office-type-badge {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue-primary);
+    background: var(--blue-lighter);
+    padding: 2px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .office-nepali {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 12.5px;
+    color: var(--red-text);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .office-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px 10px;
+    margin-bottom: 16px;
+  }
+  .office-meta-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .meta-icon { font-size: 13px; flex-shrink: 0; }
+
+  .office-card-actions { display: flex; gap: 10px; }
+  .btn-directions {
+    flex: 1;
+    background: var(--blue-primary);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .btn-directions:hover { background: var(--blue-mid); }
+  .btn-view-services {
+    flex: 1;
+    background: var(--white);
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .btn-view-services:hover { border-color: var(--blue-primary); background: var(--blue-lighter); }
+
+  @media (max-width: 900px) {
+    .offices-inner { grid-template-columns: 1fr; gap: 40px; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-globe">🌐</span>
+    <span>Official portal of the Federal Democratic Republic of Nepal</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-lang active">English</button>
+    <span>|</span>
+    <button class="topbar-lang">नेपाली</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="#">
+      <div class="logo-mark">न</div>
+      <div class="logo-text-wrap">
+        <span class="logo-name">Government Sewa</span>
+        <span class="logo-nepali">नेपाल सरकार</span>
+      </div>
+    </a>
+ <nav>
+   <a href="homepage.html" class="active">Home</a> 
+  <a href="services.html">Services</a>
+   <a href="offices.html">Offices</a>
+    <a href="form.html">Forms</a> 
+    <a href="guidance.html">Guidance</a> 
+    <a href="testimonials.html">Contact</a> 
+  </nav>
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="global-search" placeholder="Search services...">
+    </div>
+  </div>
+
+<a href="login.html" class="btn-login">Login / Register</a>
+
+</div>
+
+</header>
+
+<section class="offices-section">
+  <div class="offices-inner">
+
+    <div class="offices-left">
+      
+      <h2 class="offices-h2">Find Government Offices Near You</h2>
+      <p class="offices-desc">Locate your nearest District Administration Office, Ministry department, or local government office across all 77 districts and 7 provinces.</p>
+
+      <div class="office-search-bar">
+        <span class="office-search-icon-wrap">🔍</span>
+        <input type="text" id="office-search-input" placeholder="Enter district, city, or office name...">
+        <button class="office-search-btn" id="office-search-submit">Search</button>
+      </div>
+
+      <div class="nepal-map-card">
+        <svg class="nepal-map-svg" viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60,180 Q40,120 80,80 Q130,35 220,40 Q300,25 390,55 Q455,78 470,135 Q485,185 435,220 Q360,248 270,235 Q180,245 110,220 Q75,210 60,180 Z" fill="#dce8f8" stroke="#a0b8e0" stroke-width="2"/>
+
+          <line x1="180" y1="55" x2="160" y2="220" stroke="#9cb2d8" stroke-width="1.5" stroke-dasharray="5,4"/>
+          <line x1="340" y1="50" x2="350" y2="225" stroke="#9cb2d8" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+          <circle cx="235" cy="160" r="7" fill="#1e3a8a" opacity="0.8" data-target="Lalitpur"/>
+          <circle cx="235" cy="160" r="3" fill="#fff" data-target="Lalitpur"/>
+
+          <circle cx="385" cy="135" r="7" fill="#1e3a8a" opacity="0.8" data-target="Bhaktapur"/>
+          <circle cx="385" cy="135" r="3" fill="#fff" data-target="Bhaktapur"/>
+
+          <circle cx="255" cy="105" r="11" fill="#DC143C" data-target="Kathmandu"/>
+          <circle cx="255" cy="105" r="5" fill="#fff" data-target="Kathmandu"/>
+
+          <circle cx="130" cy="120" r="5" fill="#003893" opacity="0.75" data-target="Kirtipur"/>
+          <circle cx="320" cy="85" r="5" fill="#003893" opacity="0.75" data-target="Budhanilkantha"/>
+          <circle cx="430" cy="170" r="5" fill="#003893" opacity="0.75" data-target="Changunarayan"/>
+
+          <text x="255" y="88" font-family="Plus Jakarta Sans,sans-serif" font-size="12" fill="#003893" font-weight="800" text-anchor="middle" data-target="Kathmandu">Kathmandu</text>
+          <text x="235" y="182" font-family="Plus Jakarta Sans,sans-serif" font-size="11" fill="#4a5568" text-anchor="middle" data-target="Lalitpur">Lalitpur</text>
+          <text x="385" y="155" font-family="Plus Jakarta Sans,sans-serif" font-size="11" fill="#4a5568" text-anchor="middle" data-target="Bhaktapur">Bhaktapur</text>
+          <text x="118" y="140" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="#4a5568" text-anchor="middle" data-target="Kirtipur">Kirtipur</text>
+          <text x="320" y="70" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="#4a5568" text-anchor="middle" data-target="Budhanilkantha">Budhanilkantha</text>
+          <text x="435" y="188" font-family="Plus Jakarta Sans,sans-serif" font-size="10" fill="#4a5568" text-anchor="middle" data-target="Changunarayan">Changunarayan</text>
+        </svg>
+
+        <div class="map-legend">
+          <div class="legend-item"><div class="legend-dot red"></div> Capital City</div>
+          <div class="legend-item"><div class="legend-dot blue"></div> Municipality</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offices-right">
+      <div class="nearby-header">
+        <span class="nearby-title" id="results-heading">Nearby Offices</span>
+        <a class="view-all-link" id="view-all-trigger">View all offices</a>
+      </div>
+
+      <div class="office-cards" id="office-deck">
+
+        <!-- Department of Passports -->
+        <div class="office-card" data-tags="passport department kathmandu narayanhiti federal">
+          <div class="office-card-top">
+            <div class="office-card-name-row">
+              <span class="office-card-name">Department of Passports</span>
+              <span class="office-type-badge">Federal</span>
+            </div>
+          </div>
+          <div class="office-nepali">राहदानी विभाग</div>
+          <div class="office-meta">
+            <div class="office-meta-item"><span class="meta-icon"></span> Tripureshwor, Kathmandu</div>
+            <div class="office-meta-item"><span class="meta-icon"></span>+977-1-5970330</div>
+            <div class="office-meta-item"><span class="meta-icon"></span> Sun–Fri: 10:00–16:00</div>
+          </div>
+          <div class="office-card-actions">
+            <button class="btn-directions" onclick="window.open('https://maps.app.goo.gl/t2Zt9QHryXwCEDLS6','_blank')">Get Directions</button>
+            <button class="btn-view-services" onclick="window.location.href='passportdetail.html'">View Services</button>
+          </div>
+        </div>
+
+        <!-- District Administration Office -->
+        <div class="office-card" data-tags="district administration office dao babarmahal kathmandu">
+          <div class="office-card-top">
+            <div class="office-card-name-row">
+              <span class="office-card-name">District Administration Office</span>
+              <span class="office-type-badge">District</span>
+            </div>
+          </div>
+          <div class="office-nepali">जिल्ला प्रशासन कार्यालय</div>
+          <div class="office-meta">
+            <div class="office-meta-item"><span class="meta-icon"></span> Babarmahal, Kathmandu</div>
+            <div class="office-meta-item"><span class="meta-icon"></span> 01-5970330</div>
+            <div class="office-meta-item"><span class="meta-icon"></span> Sun–Fri: 10:00–17:00</div>
+          </div>
+          <div class="office-card-actions">
+            <button class="btn-directions" onclick="window.open('https://maps.app.goo.gl/xDQwn34NqtPe3KnH7','_blank')">Get Directions</button>
+            <button class="btn-view-services" onclick="window.location.href='citizenshipdetail.html'">View Services</button>
+          </div>
+        </div>
+
+        <!-- Department of Transport Management -->
+        <div class="office-card" data-tags="transport ministry driving license transport management department ekantakuna lalitpur">
+          <div class="office-card-top">
+            <div class="office-card-name-row">
+              <span class="office-card-name">Department of Transport Management</span>
+              <span class="office-type-badge">Federal</span>
+            </div>
+          </div>
+          <div class="office-nepali">यातायात व्यवस्था विभाग</div>
+          <div class="office-meta">
+            <div class="office-meta-item"><span class="meta-icon"></span> Thulobharyang, Kathmandu</div>
+            <div class="office-meta-item"><span class="meta-icon"></span>  01-5249118</div>
+            <div class="office-meta-item"><span class="meta-icon"></span> Sun–Thurs: 10:00–15:00</div>
+          </div>
+          <div class="office-card-actions">
+            <button class="btn-directions" onclick="window.open('https://maps.app.goo.gl/QhVVrG4b4VWp6bZt8','_blank')">Get Directions</button>
+            <button class="btn-view-services" onclick="window.location.href='drivinglicense.html'">View Services</button>
+          </div>
+        </div>
+
+        <div class="no-results" id="no-results-msg">
+          No government offices match your filter criteria. Try clicking "View all offices".
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('office-search-input');
+    const searchBtn = document.getElementById('office-search-submit');
+    const viewAllBtn = document.getElementById('view-all-trigger');
+    const officeCards = document.querySelectorAll('.office-card');
+    const noResultsMsg = document.getElementById('no-results-msg');
+    const resultsHeading = document.getElementById('results-heading');
+    const interactiveMapElements = document.querySelectorAll('.nepal-map-svg [data-target]');
+
+    // Filtering Core Function Engine
+    function filterOffices(queryText) {
+      const cleanQuery = queryText.toLowerCase().trim();
+      let visibleCount = 0;
+
+      officeCards.forEach(card => {
+        const structuralTags = card.getAttribute('data-tags') || '';
+        const textContent = card.innerText.toLowerCase();
+        
+        if (structuralTags.includes(cleanQuery) || textContent.includes(cleanQuery)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Update Header Text contextual notice
+      if (cleanQuery) {
+        resultsHeading.textContent = `Results for "${queryText}"`;
+      } else {
+        resultsHeading.textContent = 'Nearby Offices';
+      }
+
+      // Display empty status fallback conditional rules
+      if (visibleCount === 0) {
+        noResultsMsg.style.display = 'block';
+      } else {
+        noResultsMsg.style.display = 'none';
+      }
+    }
+
+    // 1. Hook search actions
+    searchBtn.addEventListener('click', () => {
+      filterOffices(searchInput.value);
+    });
+
+    searchInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        filterOffices(searchInput.value);
+      }
+    });
+
+    interactiveMapElements.forEach(element => {
+      element.addEventListener('click', () => {
+        const geographicTarget = element.getAttribute('data-target');
+        searchInput.value = geographicTarget;
+        filterOffices(geographicTarget);
+      });
+    });
+
+    // 3. Clear filter resetting operations
+    viewAllBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchInput.value = '';
+      filterOffices('');
+    });
+  });
+</script>
+</body>
+</html>
