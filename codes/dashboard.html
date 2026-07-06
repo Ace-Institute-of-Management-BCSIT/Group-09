@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f3f7ff; color: #122033; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 20px 60px; }
+    .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 12px 30px rgba(0,0,0,.08); margin-bottom: 20px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .pill { display: inline-block; padding: 6px 12px; border-radius: 999px; background: #e8f1ff; color: #1848a5; font-weight: 600; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .stat { background: #f8fbff; border: 1px solid #e4ebf7; border-radius: 12px; padding: 16px; }
+    button { border: 0; padding: 10px 14px; border-radius: 10px; background: #003893; color: white; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h1>Dummy Auth Dashboard</h1>
+          <p>This is a protected demo dashboard for verified users.</p>
+        </div>
+        <span class="pill" id="statusPill">Loading...</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="stat">
+        <h3>Signed In As</h3>
+        <p id="userName">—</p>
+      </div>
+      <div class="stat">
+        <h3>Email</h3>
+        <p id="userEmail">—</p>
+      </div>
+      <div class="stat">
+        <h3>Auth Mode</h3>
+        <p>OTP + MongoDB</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>What this dashboard shows</h3>
+      <ul>
+        <li>User registration is stored in MongoDB.</li>
+        <li>OTP verification is handled by the backend flow.</li>
+        <li>Login is protected and session-based in the browser.</li>
+      </ul>
+      <button onclick="logoutUser()">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    const user = JSON.parse(sessionStorage.getItem('loggedInUser') || 'null');
+    if (!user) {
+      window.location.href = 'login.html';
+    } else {
+      document.getElementById('statusPill').textContent = 'Authenticated';
+      document.getElementById('userName').textContent = user.name || 'Unknown';
+      document.getElementById('userEmail').textContent = user.email || 'Unknown';
+    }
+
+    function logoutUser() {
+      sessionStorage.removeItem('loggedInUser');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

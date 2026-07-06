@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="site-title">Government Sewa – Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Brand Theme Palette Hex Design Tokens */
+    --brand-red:       #DC143C;
+    --brand-blue:      #003893;
+    --brand-blue-dark: #002868;
+    --brand-white:     #FFFFFF;
+
+    --bg-light:        #f3f7fc;
+    --text-dark:       #0f172a;
+    --text-mid:        #334155;
+    --text-muted:      #64748b;
+    --border:          #cbd5e1;
+    --blue-lighter:    #eef4ff;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 25px rgba(0, 56, 147, 0.05);
+    --shadow-lg: 0 20px 40px rgba(0, 40, 104, 0.12);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-light); }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #a8b2c1; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--brand-blue-dark);
+    color: rgba(255,255,255,0.88);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-right button {
+    background: none; border: none; color: rgba(255,255,255,0.75);
+    cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: all 0.2s ease;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .topbar-right button:hover { color: var(--brand-white); background: rgba(255,255,255,0.1); }
+  .topbar-right button.active { 
+    color: var(--brand-white); 
+    background-color: var(--brand-red); 
+    font-weight: 700; 
+  }
+  .topbar-sep { color: rgba(255,255,255,0.25); }
+
+  /* ── HEADER NAVIGATION ── */
+  .site-header {
+    background: var(--brand-white);
+    box-shadow: 0 4px 20px rgba(0, 56, 147, 0.03);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: auto;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .logo-link { display: flex; align-items: center; gap: 13px; text-decoration: none; flex-shrink: 0; }
+  .logo-circle {
+    width: 44px; height: 44px;
+    background: var(--brand-blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brand-white);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 20px; font-weight: 700;
+  }
+  .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+  .logo-en { font-size: 16.5px; font-weight: 700; color: var(--text-dark); letter-spacing: -0.01em; }
+  .logo-ne { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 12px; font-weight: 600; color: var(--brand-red); }
+
+  nav { display: flex; gap: 4px; }
+  nav a {
+    text-decoration: none; color: #475569;
+    font-size: 14px; font-weight: 500;
+    padding: 8px 16px; border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  nav a:hover { color: var(--brand-blue); background: var(--blue-lighter); }
+  nav a.active { color: var(--brand-blue); font-weight: 600; background: var(--blue-lighter); }
+
+  .header-search {
+    margin-left: auto;
+    display: flex; align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    min-width: 220px;
+    transition: all 0.2s ease;
+  }
+  .header-search:focus-within {
+    background: var(--brand-white);
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.1);
+  }
+  .header-search input {
+    border: none; background: transparent; outline: none;
+    font-family: inherit; font-size: 14px; color: var(--text-dark); width: 100%;
+  }
+  .header-search input::placeholder { color: #94a3b8; }
+
+  .btn-login {
+    background: var(--brand-blue); color: var(--brand-white);
+    border: none; text-decoration: none;
+    padding: 10px 20px; border-radius: 6px;
+    font-weight: 600; font-size: 14px;
+    transition: all 0.2s ease; white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 56, 147, 0.15);
+  }
+  .btn-login:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0, 56, 147, 0.2); }
+
+  /* ── HERO SECTION ── */
+  .hero-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1.150fr 0.85fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--brand-blue);
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brand-white);
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-h1 {
+    font-size: 58px;
+    font-weight: 800;
+    color: var(--brand-blue-dark);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .hero-h1 span {
+    color: var(--brand-red);
+  }
+
+  .hero-nepali {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--brand-blue);
+    margin-bottom: 20px;
+  }
+  .hero-desc {
+    font-size: 16.5px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta-row {
+    display: flex; gap: 14px; margin-bottom: 40px;
+  }
+  .btn-find-services, .btn-locate {
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.2s ease;
+  }
+  .btn-find-services { 
+    background: var(--brand-red); 
+    color: var(--brand-white); 
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.25);
+  }
+  .btn-find-services:hover { 
+    background: #b20f30; 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.35);
+  }
+  .btn-locate { 
+    background: var(--brand-white); 
+    color: var(--brand-blue); 
+    border: 2px solid var(--brand-blue); 
+  }
+  .btn-locate:hover { 
+    background: var(--blue-lighter); 
+    transform: translateY(-2px);
+  }
+
+  .hero-trust {
+    display: flex; align-items: center; gap: 32px; font-size: 14px; color: var(--text-muted); font-weight: 600;
+  }
+  .trust-item { display: flex; align-items: center; gap: 8px; }
+  .trust-item::before {
+    content: '✓';
+    color: var(--brand-blue);
+    font-weight: 900;
+  }
+
+  /* ── RIGHT GRAPHIC FRAME ── */
+  .hero-right { position: relative; }
+  .hero-image-card {
+    background: var(--brand-white);
+    border-radius: 24px;
+    padding: 14px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(0, 56, 147, 0.05);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-image-card:hover {
+    transform: scale(1.015) translateY(-4px);
+  }
+  .hero-real-img {
+    width: 100%; height: 440px;
+    object-fit: cover; border-radius: 14px;
+    display: block;
+  }
+
+  /* ── RESPONSIVENESS MATRIX ── */
+  @media(max-width: 1024px) {
+    .hero-inner { gap: 40px; }
+    .hero-h1 { font-size: 46px; }
+  }
+  @media(max-width: 900px) {
+    .header-inner { flex-direction: column; height: auto; padding: 16px 20px; gap: 16px; }
+    nav { flex-wrap: wrap; justify-content: center; }
+    .header-search { margin-left: 0; width: 100%; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-badge { margin: 0 auto 24px; }
+    .hero-desc { margin: 0 auto 32px; }
+    .hero-cta-row { justify-content: center; }
+    .hero-trust { justify-content: center; }
+    .hero-real-img { height: 380px; }
+  }
+  @media(max-width: 480px) {
+    .hero-h1 { font-size: 36px; }
+    .hero-cta-row { flex-direction: column; width: 100%; gap: 10px; }
+    .btn-find-services, .btn-locate { text-align: center; width: 100%; }
+    .hero-trust { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span id="txt-portal-tag">Official portal of the Federal Democratic Republic of Nepal</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-lang active" id="lang-en">English</button>
+    <span class="topbar-sep">|</span>
+    <button class="topbar-lang" id="lang-ne">नेपाली</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="homepage.html">
+      <div class="logo-circle">न</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">नेपाल सरकार</span>
+      </div>
+    </a>
+   <nav>
+   <a href="homepage.html" class="active">Home</a> 
+  <a href="pi.html">Services</a>
+   <a href="form2.html">Offices</a>
+    <a href="pinky.html">Form</a> 
+    <a href="guidance.html">Guidance</a> 
+    <a href="office-register.html">Register Office</a> 
+  </nav>
+
+    <div class="header-search">
+      <input type="text" id="header-search-input" placeholder="Search services...">
+    </div>
+
+    <a href="login.html" class="btn-login" id="btn-login-txt">Login / Register</a>
+  </div>
+</header>
+
+<section class="hero-section">
+  <div class="hero-inner">
+    
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span id="lbl-hero-badge">Nepal's Official Digital Services Platform</span>
+      </div>
+
+      <h1 class="hero-h1" id="lbl-hero-title">
+        Government Services <br><span>Made Simple</span>
+      </h1>
+
+      <p class="hero-nepali" id="lbl-hero-nepali-sub">सरकारी सेवाहरू अब सजिलो र पारदर्शी</p>
+
+      <p class="hero-desc" id="lbl-hero-desc">
+        Find offices, download forms, understand required documents, and get step-by-step guidance for any government process, all in one place.
+      </p>
+
+      <div class="hero-cta-row">
+        <a class="btn-find-services" href="services1.html" id="btn-find-services">Find Services</a>
+        <a class="btn-locate" href="form2.html" id="btn-locate">Locate Offices</a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-item">
+          <span id="lbl-trust-secure">Verified Platform</span>
+        </div>
+        <div class="trust-item">
+          <span id="lbl-trust-hours">Available 24/7 Digital Access</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-image-card">
+        <img 
+          src="C:\Users\LENOVO\OneDrive\Pictures\Screenshots\Screenshot 2026-05-29 202253.png"
+          alt="Digital Nepal Services Portal"
+          class="hero-real-img"
+          onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'500\' height=\'420\' viewBox=\'0 0 500 420\'><rect width=\'100%\' height=\'100%\' fill=\'%23002868\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\'>Government Sewa</text></svg>'"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const dict = {
+    en: {
+      title: "Government Sewa – Home",
+      portalTag: "Official portal of the Federal Democratic Republic of Nepal",
+      home: "Home", services: "Services", offices: "Offices", forms: "Form", guidance: "Guidance", contact: "Register Office",
+      login: "Login / Register",
+      searchPlaceholder: "Search services...",
+      heroBadge: "Nepal's Official Digital Services Platform",
+      heroTitle: "Government Services <br><span>Made Simple</span>",
+      heroNepaliSub: "सरकारी सेवाहरू अब सजिलो र पारदर्शी",
+      heroDesc: "Find offices, download forms, understand required documents, and get step-by-step guidance for any government process, all in one place.",
+      btnFindServices: "Find Services",
+      btnLocate: "Locate Offices",
+      trustSecure: "Verified Platform",
+      trustHours: "Available 24/7 Digital Access"
+    },
+    ne: {
+      title: "नेपाल सरकार – गृहपृष्ठ",
+      portalTag: "नेपाल सरकारको आधिकारिक डिजिटल पोर्टल",
+      home: "गृहपृष्ठ", services: "सेवाहरू", offices: "कार्यालयहरू", forms: "फारम", guidance: "मार्गदर्शन", contact: "कार्यालय दर्ता",
+      login: "लगइन / दर्ता",
+      searchPlaceholder: "सेवाहरू खोज्नुहोस्...",
+      heroBadge: "नेपालको आधिकारिक डिजिटल सेवा प्लेटफर्म",
+      heroTitle: "सरकारी सेवाहरू <br><span>अब एकदम सरल</span>",
+      heroNepaliSub: "Government Services Made Simple and Transparent",
+      heroDesc: "कार्यालयहरू पत्ता लगाउनुहोस्, फारमहरू डाउनलोड गर्नुहोस्, आवश्यक कागजातहरू बुझ्नुहोस् र कुनै पनि सरकारी प्रक्रियाको लागि चरण-बद्ध मार्गदर्शन एकै ठाउँबाट प्राप्त गर्नुहोस्।",
+      btnFindServices: "सेवाहरू हेर्नुहोस्",
+      btnLocate: "कार्यालयहरू खोज्नुहोस्",
+      trustSecure: "प्रमाणित प्लेटफर्म",
+      trustHours: "२४/७ डिजिटल पहुँच"
+    }
+  };
+
+  function switchInterfaceLanguage(lang) {
+    const data = dict[lang];
+    
+    document.title = data.title;
+    document.getElementById('txt-portal-tag').innerText = data.portalTag;
+    document.getElementById('nav-home').innerText = data.home;
+    document.getElementById('nav-services').innerText = data.services;
+    document.getElementById('nav-offices').innerText = data.offices;
+    document.getElementById('nav-forms').innerText = data.forms;
+    document.getElementById('nav-guidance').innerText = data.guidance;
+    document.getElementById('nav-contact').innerText = data.contact;
+    document.getElementById('btn-login-txt').innerText = data.login;
+    document.getElementById('header-search-input').placeholder = data.searchPlaceholder;
+
+    document.getElementById('lbl-hero-badge').innerText = data.heroBadge;
+    document.getElementById('lbl-hero-title').innerHTML = data.heroTitle;
+    document.getElementById('lbl-hero-nepali-sub').innerText = data.heroNepaliSub;
+    document.getElementById('lbl-hero-desc').innerText = data.heroDesc;
+    document.getElementById('btn-find-services').innerText = data.btnFindServices;
+    document.getElementById('btn-locate').innerText = data.btnLocate;
+    document.getElementById('lbl-trust-secure').innerText = data.trustSecure;
+    document.getElementById('lbl-trust-hours').innerText = data.trustHours;
+  }
+
+  function handleRouting(query) {
+    const standardizedQuery = query.toLowerCase().trim();
+    if (standardizedQuery === "driving licence" || standardizedQuery === "driving liscence") {
+      window.location.href = "form2.html";
+    } else {
+      window.location.href = query ? `services1.html?query=${encodeURIComponent(query)}` : `services1.html`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnEn = document.getElementById('lang-en');
+    const btnNe = document.getElementById('lang-ne');
+
+    btnEn.addEventListener('click', () => {
+      btnEn.classList.add('active');
+      btnNe.classList.remove('active');
+      switchInterfaceLanguage('en');
+    });
+
+    btnNe.addEventListener('click', () => {
+      btnNe.classList.add('active');
+      btnEn.classList.remove('active');
+      switchInterfaceLanguage('ne');
+    });
+
+    // Header search tracking matrix
+    const hInput = document.getElementById('header-search-input');
+    hInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        handleRouting(hInput.value);
+      }
+    });
+  });
+</script>
+</body>
+</html>

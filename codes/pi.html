@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="site-title">Government Sewa – Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Noto+Sans+Devanagari:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Brand Theme Palette Hex Design Tokens */
+    --brand-red:       #DC143C;
+    --brand-blue:      #003893;
+    --brand-blue-dark: #002868;
+    --brand-white:     #FFFFFF;
+
+    --bg-light:        #f3f7fc;
+    --text-dark:       #0f172a;
+    --text-mid:        #334155;
+    --text-muted:      #64748b;
+    --border:          #cbd5e1;
+    --blue-lighter:    #eef4ff;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 25px rgba(0, 56, 147, 0.05);
+    --shadow-lg: 0 20px 40px rgba(0, 40, 104, 0.12);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-light); }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #a8b2c1; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--brand-blue-dark);
+    color: rgba(255,255,255,0.88);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-right button {
+    background: none; border: none; color: rgba(255,255,255,0.75);
+    cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: all 0.2s ease;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .topbar-right button:hover { color: var(--brand-white); background: rgba(255,255,255,0.1); }
+  .topbar-right button.active { 
+    color: var(--brand-white); 
+    background-color: var(--brand-red); 
+    font-weight: 700; 
+  }
+  .topbar-sep { color: rgba(255,255,255,0.25); }
+
+  /* ── HEADER NAVIGATION ── */
+  .site-header {
+    background: var(--brand-white);
+    box-shadow: 0 4px 20px rgba(0, 56, 147, 0.03);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: auto;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .logo-link { display: flex; align-items: center; gap: 13px; text-decoration: none; flex-shrink: 0; }
+  .logo-circle {
+    width: 44px; height: 44px;
+    background: var(--brand-blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brand-white);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 20px; font-weight: 700;
+  }
+  .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+  .logo-en { font-size: 16.5px; font-weight: 700; color: var(--text-dark); letter-spacing: -0.01em; }
+  .logo-ne { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 12px; font-weight: 600; color: var(--brand-red); }
+
+  nav { display: flex; gap: 4px; }
+  nav a {
+    text-decoration: none; color: #475569;
+    font-size: 14px; font-weight: 500;
+    padding: 8px 16px; border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  nav a:hover { color: var(--brand-blue); background: var(--blue-lighter); }
+  nav a.active { color: var(--brand-blue); font-weight: 600; background: var(--blue-lighter); }
+
+  .header-search {
+    margin-left: auto;
+    display: flex; align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    min-width: 220px;
+    transition: all 0.2s ease;
+  }
+  .header-search:focus-within {
+    background: var(--brand-white);
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.1);
+  }
+  .header-search input {
+    border: none; background: transparent; outline: none;
+    font-family: inherit; font-size: 14px; color: var(--text-dark); width: 100%;
+  }
+  .header-search input::placeholder { color: #94a3b8; }
+
+  .btn-login {
+    background: var(--brand-blue); color: var(--brand-white);
+    border: none; text-decoration: none;
+    padding: 10px 20px; border-radius: 6px;
+    font-weight: 600; font-size: 14px;
+    transition: all 0.2s ease; white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 56, 147, 0.15);
+  }
+  .btn-login:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0, 56, 147, 0.2); }
+
+  /* ── SERVICES PAGE MAIN BODY ── */
+  .page {
+    padding: 68px 40px 80px;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+  }
+
+  .main-title {
+    text-align: center;
+    font-size: 44px; font-weight: 800;
+    color: var(--brand-blue-dark);
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+
+  .main-sub {
+    text-align: center;
+    font-size: 16px; color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 580px;
+    margin: 0 auto 52px;
+  }
+
+  /* ── SERVICE MATRIX GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 44px;
+  }
+
+  /* ── SEWA CARDS ── */
+  .card {
+    background: var(--brand-white);
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 1px solid rgba(0, 56, 147, 0.06);
+    box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: #cbd8f0;
+  }
+
+  /* Active Card Variant Styling */
+  .card.active-card {
+    background: #f0fdf4; 
+    border-color: #bbf7d0;
+  }
+  .card.active-card:hover {
+    background: #dcfce7; 
+    border-color: #86efac;
+    box-shadow: 0 20px 40px rgba(22, 163, 74, 0.08);
+  }
+
+  .card-top-row {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  .card-name {
+    font-size: 22px; font-weight: 700;
+    color: var(--text-dark);
+  }
+  .card-nepali {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--brand-red); margin-bottom: 16px;
+  }
+  .card-desc {
+    font-size: 14.5px; color: var(--text-mid);
+    line-height: 1.65; flex: 1; margin-bottom: 24px;
+  }
+  .card-footer {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 18px;
+  }
+  .card.active-card .card-footer {
+    border-top-color: #e2e8f0;
+  }
+
+  .card-time {
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+  }
+  .card-link {
+    text-decoration: none;
+    font-size: 14px; font-weight: 700; color: var(--brand-blue);
+    display: flex; align-items: center; gap: 3px;
+    transition: gap 0.15s;
+  }
+  .card-link:hover { gap: 7px; color: var(--brand-blue-dark); }
+
+  /* Interactive Status Badge Tokens */
+  .status-tag {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+  }
+  .status-inactive {
+    color: #dc2626;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+  }
+  .status-active {
+    color: #16a34a;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+  }
+
+  /* ── RESPONSIOMETER STYLES ── */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+  @media (max-width: 900px) {
+    .header-inner { flex-direction: column; height: auto; padding: 16px 20px; gap: 16px; }
+    nav { flex-wrap: wrap; justify-content: center; }
+    .header-search { margin-left: 0; width: 100%; }
+    .page { padding: 40px 20px 60px; }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .main-title { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR COMPONENT MODULE -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span id="txt-portal-tag">Official portal of the Federal Democratic Republic of Nepal</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-lang active" id="lang-en">English</button>
+    <span class="topbar-sep">|</span>
+    <button class="topbar-lang" id="lang-ne">नेपाली</button>
+  </div>
+</div>
+
+<!-- STICKY SITE HEADER NAVIGATION component -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a class="logo-link" href="homepage.html">
+      <div class="logo-circle">न</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">नेपाल सरकार</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="homepage.html" id="nav-home">Home</a> 
+      <a href="pi.html" class="active">Services</a>
+      <a href="form2.html" id="nav-offices">Offices</a>
+      <a href="pinky.html" id="nav-forms">Form</a> 
+      <a href="guidance.html" id="nav-guidance">Guidance</a> 
+      <a href="office-register.html" id="nav-contact">Register Office</a> 
+    </nav>
+
+    <a href="login.html" class="btn-login" id="btn-login-txt">Login / Register</a>
+
+  </div>
+</header>
+
+<!-- MAIN CONTENT BLOCK CONTAINER -->
+<main class="page">
+ 
+  <h1 class="main-title" id="lbl-main-title">Government Services</h1>
+  <p class="main-sub" id="lbl-main-sub">Select a service below to view requirements, forms, office locations, and step-by-step process guides.</p>
+
+  <div class="grid">
+
+    <!-- PASSPORT SEWA CARD -->
+    <div class="card" onclick="alert('This process flow module is currently offline / under development.');">
+      <div class="card-top-row">
+        <div class="card-name" id="srv-passport-name">Passport</div>
+        <span class="status-tag status-inactive" id="srv-passport-status">Inactive</span>
+      </div>
+      <div class="card-nepali" id="srv-passport-nep">राहदनी</div>
+      <div class="card-desc" id="srv-passport-desc">Apply for a new passport or renew your existing travel document seamlessly online.</div>
+      <div class="card-footer">
+        <div class="card-time" id="srv-passport-time">Processing: Urgent / Normal</div>
+        <span class="card-link"><span id="lbl-view-proc-1">View Process</span> &rsaquo;</span>
+      </div>
+    </div>
+
+    <!-- CITIZENSHIP SEWA CARD -->
+    <div class="card" onclick="alert('This process flow module is currently offline / under development.');">
+      <div class="card-top-row">
+        <div class="card-name" id="srv-citizen-name">Citizenship</div>
+        <span class="status-tag status-inactive" id="srv-citizen-status">Inactive</span>
+      </div>
+      <div class="card-nepali" id="srv-citizen-nep">नागरिकता</div>
+      <div class="card-desc" id="srv-citizen-desc">Obtain your new citizenship certificate, copy or update your official citizenship records.</div>
+      <div class="card-footer">
+        <div class="card-time" id="srv-citizen-time">Time: 3–7 working days</div>
+        <span class="card-link"><span id="lbl-view-proc-2">View Process</span> &rsaquo;</span>
+      </div>
+    </div>
+
+    <!-- DRIVING LICENSE SEWA CARD (Active Module) -->
+    <div class="card active-card" onclick="window.location.href='prepare.html';">
+      <div class="card-top-row">
+        <div class="card-name" id="srv-license-name">Driving License</div>
+        <span class="status-tag status-active" id="srv-license-status">Active</span>
+      </div>
+      <div class="card-nepali" id="srv-license-nep">सवारी चालक अनुमतिपत्र</div>
+      <div class="card-desc" id="srv-license-desc">Apply for a new license category, schedule a trial, or renew your driving licence easily.</div>
+      <div class="card-footer">
+        <div class="card-time" id="srv-license-time">Time: 14–21 working days</div>
+        <a href="prepare.html" class="card-link" onclick="event.stopPropagation();"><span id="lbl-view-proc-3">View Process</span> &rsaquo;</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+  // Centralized Localization Matrix State Core Mapping
+  const dict = {
+    en: {
+      title: "Government Sewa – Services",
+      portalTag: "Official portal of the Federal Democratic Republic of Nepal",
+      home: "Home", services: "Services", offices: "Offices", forms: "Form", guidance: "Guidance", contact: "Register Office",
+      login: "Login / Register",
+      searchPlaceholder: "Search services...",
+      mainTitle: "Government Services",
+      mainSub: "Select a service below to view requirements, forms, office locations, and step-by-step process guides.",
+      
+      passportName: "Passport", passportNep: "राहदनी", passportStatus: "Inactive", passportDesc: "Apply for a new passport or renew your existing travel document seamlessly online.", passportTime: "Processing: Urgent / Normal",
+      citizenName: "Citizenship", citizenNep: "नागरिकता", citizenStatus: "Inactive", citizenDesc: "Obtain your new citizenship certificate, copy or update your official citizenship records.", citizenTime: "Time: 3–7 working days",
+      licenseName: "Driving License", licenseNep: "सवारी चालक अनुमतिपत्र", licenseStatus: "Active", licenseDesc: "Apply for a new license category, schedule a trial, or renew your driving licence easily.", licenseTime: "Time: 14–21 working days",
+      viewProc: "View Process"
+    },
+    ne: {
+      title: "नेपाल सरकार – सेवाहरू",
+      portalTag: "नेपाल सरकारको आधिकारिक डिजिटल पोर्टल",
+      home: "गृहपृष्ठ", services: "सेवाहरू", offices: "कार्यालयहरू", forms: "फारम", guidance: "मार्गदर्शन", contact: "कार्यालय दर्ता",
+      login: "लगइन / दर्ता",
+      searchPlaceholder: "सेवाहरू खोज्नुहोस्...",
+      mainTitle: "सरकारी सेवाहरू",
+      mainSub: "आवश्यक कागजातहरू, फारमहरू, कार्यालयको स्थान र चरणबद्ध मार्गनिर्देशन हेर्नको लागि तलका सेवाहरू चयन गर्नुहोस्।",
+      
+      passportName: "राहदानी (Passport)", passportNep: "राहदानी विभाग", passportStatus: "निष्क्रिय", passportDesc: "नयाँ राहदानीको लागि आवेदन दिनुहोस् वा तपाईंको अवस्थित राहदानी सजिलै अनलाइन नवीकरण गर्नुहोस्।", passportTime: "प्रक्रिया समय: द्रुत / साधारण",
+      citizenName: "नागरिकता (Citizenship)", citizenNep: "जिल्ला प्रशासन कार्यालय", citizenStatus: "निष्क्रिय", citizenDesc: "नयाँ नागरिकता प्रमाणपत्र लिनुहोस्, प्रतिलिपि बनाउनुहोस् वा आफ्नो आधिकारिक नागरिकता विवरणहरू अद्यावधिक गर्नुहोस्।", citizenTime: "समय: ३–७ कार्य दिन",
+      licenseName: "सवारी चालक अनुमतिपत्र", licenseNep: "यातायात व्यवस्था कार्यालय", licenseStatus: "सक्रिय", licenseDesc: "नयाँ अनुमतिपत्र श्रेणीको लागि आवेदन दिनुहोस्, लिखित/ट्रायल परीक्षा तालिका हेर्नुहोस् वा नवीकरण गर्नुहोस्।", licenseTime: "समय: १४–२१ कार्य दिन",
+      viewProc: "प्रक्रिया हेर्नुहोस्"
+    }
+  };
+
+  function switchInterfaceLanguage(lang) {
+    const data = dict[lang];
+    
+    // Core Layout Meta Framework localization updates
+    document.title = data.title;
+    document.getElementById('txt-portal-tag').innerText = data.portalTag;
+    document.getElementById('nav-home').innerText = data.home;
+    document.getElementById('nav-services').innerText = data.services;
+    document.getElementById('nav-offices').innerText = data.offices;
+    document.getElementById('nav-forms').innerText = data.forms;
+    document.getElementById('nav-guidance').innerText = data.guidance;
+    document.getElementById('nav-contact').innerText = data.contact;
+    document.getElementById('btn-login-txt').innerText = data.login;
+    document.getElementById('header-search-input').placeholder = data.searchPlaceholder;
+
+    // Body Titles localization updates
+    document.getElementById('lbl-main-title').innerText = data.mainTitle;
+    document.getElementById('lbl-main-sub').innerText = data.mainSub;
+
+    // Cards data structural matrix updates
+    document.getElementById('srv-passport-name').innerText = data.passportName;
+    document.getElementById('srv-passport-nep').innerText = data.passportNep;
+    document.getElementById('srv-passport-status').innerText = data.passportStatus;
+    document.getElementById('srv-passport-desc').innerText = data.passportDesc;
+    document.getElementById('srv-passport-time').innerText = data.passportTime;
+
+    document.getElementById('srv-citizen-name').innerText = data.citizenName;
+    document.getElementById('srv-citizen-nep').innerText = data.citizenNep;
+    document.getElementById('srv-citizen-status').innerText = data.citizenStatus;
+    document.getElementById('srv-citizen-desc').innerText = data.citizenDesc;
+    document.getElementById('srv-citizen-time').innerText = data.citizenTime;
+
+    document.getElementById('srv-license-name').innerText = data.licenseName;
+    document.getElementById('srv-license-nep').innerText = data.licenseNep;
+    document.getElementById('srv-license-status').innerText = data.licenseStatus;
+    document.getElementById('srv-license-desc').innerText = data.licenseDesc;
+    document.getElementById('srv-license-time').innerText = data.licenseTime;
+
+    document.getElementById('lbl-view-proc-1').innerText = data.viewProc;
+    document.getElementById('lbl-view-proc-2').innerText = data.viewProc;
+    document.getElementById('lbl-view-proc-3').innerText = data.viewProc;
+  }
+
+  function handleRouting(query) {
+    const standardizedQuery = query.toLowerCase().trim();
+    if (standardizedQuery === "driving license" || standardizedQuery === "driving licence" || standardizedQuery === "license") {
+      window.location.href = "prepare.html";
+    } else {
+      alert("Search feature filtered: Only 'Driving License' matches standard module routes right now.");
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnEn = document.getElementById('lang-en');
+    const btnNe = document.getElementById('lang-ne');
+
+    btnEn.addEventListener('click', () => {
+      btnEn.classList.add('active');
+      btnNe.classList.remove('active');
+      switchInterfaceLanguage('en');
+    });
+
+    btnNe.addEventListener('click', () => {
+      btnNe.classList.add('active');
+      btnEn.classList.remove('active');
+      switchInterfaceLanguage('ne');
+    });
+
+    // Input monitoring key triggers loop configuration
+    const hInput = document.getElementById('header-search-input');
+    hInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        handleRouting(hInput.value);
+      }
+    });
+  });
+</script>
+</body>
+</html>

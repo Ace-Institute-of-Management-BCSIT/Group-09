@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Sewa — Sign In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --blue:#1a3db5;
+  --blue-dark:#0f2580;
+  --blue-deep:#0a1a5c;
+  --red:#dc143c;
+  --red-dim:#a30e2c;
+  --gold:#f5c518;
+  --white:#ffffff;
+  --off-white:#f7f9ff;
+  --gray-50:#f1f4fb;
+  --gray-100:#e3e8f4;
+  --gray-300:#b0bcd8;
+  --gray-500:#6b7a9f;
+  --gray-700:#374161;
+  --gray-900:#111827;
+  --r16:16px;
+  --r20:20px;
+  --r28:28px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:0 8px 28px rgba(0,0,0,0.10);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.18);
+  --transition:0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* ── PAGE SHELL ── */
+.page{
+  min-height:100vh;
+  display:flex;
+  background:var(--blue-deep);
+  position:relative;
+  overflow:hidden;
+}
+
+/* background orbs */
+.page::before,.page::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+.page::before{
+  width:700px;height:700px;
+  top:-200px;right:-180px;
+  background:radial-gradient(circle,rgba(26,61,181,0.55) 0%,transparent 70%);
+}
+.page::after{
+  width:500px;height:500px;
+  bottom:-180px;left:-120px;
+  background:radial-gradient(circle,rgba(220,20,60,0.18) 0%,transparent 70%);
+}
+
+/* ── RIGHT PANEL ── */
+.panel-right{
+  flex:1;
+  background:var(--white);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:56px 48px;
+  position:relative;
+  z-index:2;
+}
+
+/* subtle decorative arc */
+.panel-right::before{
+  content:'';
+  position:absolute;
+  top:-60px;right:-60px;
+  width:200px;height:200px;
+  border-radius:50%;
+  border:24px solid var(--gray-50);
+  opacity:0.7;
+}
+
+.auth-card{width:100%;max-width:380px;position:relative;z-index:1}
+
+/* Logo */
+.auth-logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:36px;
+}
+.logo-emblem{
+  width:52px;height:52px;
+  border-radius:14px;
+  background:var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 14px rgba(26,61,181,0.3);
+  flex-shrink:0;
+}
+.logo-emblem span{
+  font-family:'Noto Sans Devanagari',sans-serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--white);
+  line-height:1;
+}
+.logo-words{}
+.logo-en{
+  font-size:16px;
+  font-weight:800;
+  color:var(--blue-dark);
+  letter-spacing:-0.3px;
+  line-height:1.2;
+}
+.logo-np{
+  font-family:'Noto Sans Devanagari',sans-serif;
+  font-size:11.5px;
+  color:var(--red);
+  font-weight:500;
+  margin-top:2px;
+}
+
+/* Section headings */
+.section-title{
+  font-size:28px;
+  font-weight:800;
+  color:var(--gray-900);
+  margin-bottom:6px;
+  letter-spacing:-0.5px;
+}
+.section-sub{
+  font-size:13.5px;
+  color:var(--gray-500);
+  margin-bottom:28px;
+  line-height:1.5;
+}
+
+/* Tabs */
+.auth-tabs{
+  display:flex;
+  background:var(--gray-50);
+  border-radius:12px;
+  padding:4px;
+  margin-bottom:28px;
+  gap:4px;
+}
+.tab-btn{
+  flex:1;
+  height:36px;
+  border:none;
+  background:transparent;
+  border-radius:9px;
+  font-size:13.5px;
+  font-weight:600;
+  color:var(--gray-500);
+  cursor:pointer;
+  transition:all var(--transition);
+  font-family:'Inter',sans-serif;
+}
+.tab-btn.active{
+  background:var(--white);
+  color:var(--blue);
+  box-shadow:var(--shadow-sm);
+}
+
+/* Form */
+.form-group{margin-bottom:16px}
+.form-label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--gray-700);
+  margin-bottom:7px;
+}
+
+.input-wrap{position:relative}
+.input-icon{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--gray-300);
+  pointer-events:none;
+  display:flex;
+}
+.input-icon svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.form-input{
+  width:100%;
+  height:50px;
+  border:1.5px solid var(--gray-100);
+  border-radius:12px;
+  padding:0 14px 0 40px;
+  font-size:14px;
+  font-family:'Inter',sans-serif;
+  color:var(--gray-900);
+  background:var(--off-white);
+  transition:border-color var(--transition),box-shadow var(--transition),background var(--transition);
+  outline:none;
+}
+.form-input::placeholder{color:var(--gray-300)}
+.form-input:hover{border-color:var(--gray-300)}
+.form-input:focus{
+  border-color:var(--blue);
+  background:var(--white);
+  box-shadow:0 0 0 4px rgba(26,61,181,0.09);
+}
+.form-input.has-error{border-color:var(--red);box-shadow:0 0 0 4px rgba(220,20,60,0.08)}
+
+/* Password toggle */
+.pwd-toggle{
+  position:absolute;
+  right:13px;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  cursor:pointer;
+  color:var(--gray-300);
+  padding:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  transition:color var(--transition);
+}
+.pwd-toggle:hover{color:var(--gray-700)}
+.pwd-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* OTP row */
+.otp-row{
+  display:flex;
+  gap:10px;
+  align-items:flex-end;
+}
+.otp-row .form-group{flex:1;margin-bottom:0}
+.otp-send-btn{
+  height:50px;
+  white-space:nowrap;
+  padding:0 16px;
+  border-radius:12px;
+  background:var(--gray-50);
+  border:1.5px solid var(--gray-100);
+  font-size:13px;
+  font-weight:600;
+  color:var(--blue);
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  transition:all var(--transition);
+  flex-shrink:0;
+}
+.otp-send-btn:hover{background:var(--gray-100)}
+.otp-send-btn:disabled{color:var(--gray-300);cursor:not-allowed;background:var(--gray-50)}
+
+/* Submit button */
+.submit-btn{
+  width:100%;
+  height:50px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--blue) 0%,#2b55d8 100%);
+  color:var(--white);
+  font-size:14.5px;
+  font-weight:700;
+  font-family:'Inter',sans-serif;
+  cursor:pointer;
+  margin-top:4px;
+  transition:transform var(--transition),box-shadow var(--transition),filter var(--transition);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  letter-spacing:0.1px;
+}
+.submit-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(26,61,181,0.28);
+}
+.submit-btn:active{transform:translateY(0)}
+.submit-btn.loading{filter:opacity(0.75);pointer-events:none}
+.submit-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* Footer links */
+.form-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:18px;
+}
+.meta-link{
+  font-size:13px;
+  font-weight:600;
+  color:var(--blue);
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  padding:0;
+  text-decoration:none;
+  transition:color var(--transition);
+}
+.meta-link:hover{color:var(--red)}
+
+/* Divider */
+.or-divider{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:20px 0;
+  color:var(--gray-300);
+  font-size:12px;
+  font-weight:500;
+}
+.or-divider::before,.or-divider::after{
+  content:'';flex:1;
+  height:1px;
+  background:var(--gray-100);
+}
+
+/* Message box */
+.msg-box{
+  display:none;
+  margin-top:16px;
+  padding:12px 14px;
+  border-radius:10px;
+  font-size:13.5px;
+  font-weight:500;
+  align-items:center;
+  gap:8px;
+}
+.msg-box.show{display:flex}
+.msg-box svg{width:16px;height:16px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.msg-box.success{background:#ecfdf5;color:#15803d}
+.msg-box.error{background:#fff1f3;color:#be1234}
+
+/* hidden util */
+.hidden{display:none!important}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .panel-right{padding:40px 24px}
+}
+@media(max-width:480px){
+  .auth-card{max-width:100%}
+  .section-title{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ════ RIGHT PANEL ════ -->
+  <div class="panel-right">
+    <div class="auth-card">
+
+      <!-- Logo -->
+      <div class="auth-logo">
+        <div class="logo-emblem"><span>न</span></div>
+        <div class="logo-words">
+          <div class="logo-en">Government Sewa</div>
+          <div class="logo-np">नेपाल सरकार</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="auth-tabs">
+        <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+        <button class="tab-btn" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
+      </div>
+
+      <!-- ── LOGIN ── -->
+      <div id="loginSection">
+        <p class="section-sub">Welcome back! Please login to continue.</p>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <input type="email" id="loginEmail" class="form-input" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password">
+            <button class="pwd-toggle" type="button" onclick="togglePwd('loginPassword',this)" aria-label="Show password">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="loginUser()">
+          Sign In
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+
+        <div class="form-meta">
+          <button class="meta-link" onclick="showForgot()">Forgot password?</button>
+        </div>
+      </div>
+
+      <!-- ── SIGNUP ── -->
+      <div id="signupSection" class="hidden">
+        <p class="section-sub">Register with your email to get started.</p>
+
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <input type="text" id="signupName" class="form-input" placeholder="Your full name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <input type="email" id="signupEmail" class="form-input" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="password" id="signupPassword" class="form-input" placeholder="Create a password">
+            <button class="pwd-toggle" type="button" onclick="togglePwd('signupPassword',this)" aria-label="Show password">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="otp-row">
+          <div class="form-group">
+            <label class="form-label">One-Time Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </span>
+              <input type="text" id="otpInput" class="form-input" placeholder="6-digit code" maxlength="6">
+            </div>
+          </div>
+          <button class="otp-send-btn" id="sendOtpBtn" onclick="sendOTP()">Send OTP</button>
+        </div>
+
+        <button class="submit-btn" onclick="verifyOTP()" style="margin-top:20px">
+          Create Account
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+
+      <!-- ── FORGOT ── -->
+      <div id="forgotSection" class="hidden">
+        <p class="section-sub">Enter your email and we'll send a reset code.</p>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <input type="email" id="forgotEmail" class="form-input" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <button class="otp-send-btn" onclick="forgotPassword()" style="width:100%;margin-bottom:16px;height:44px;border-radius:12px">Send Reset Code</button>
+
+        <div class="form-group">
+          <label class="form-label">Reset Code</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="text" id="resetOtp" class="form-input" placeholder="6-digit code" maxlength="6">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">New Password</label>
+          <div class="input-wrap">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="password" id="newPassword" class="form-input" placeholder="Choose a new password">
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="resetPassword()">
+          Reset Password
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+
+        <div class="form-meta">
+          <button class="meta-link" onclick="switchTab('login')">← Back to sign in</button>
+        </div>
+      </div>
+
+      <!-- message -->
+      <div class="msg-box" id="msgBox">
+        <svg id="msgIcon" viewBox="0 0 24 24"></svg>
+        <span id="msgText"></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+let otpTimer = null;
+
+/* ── TAB SWITCH ── */
+function switchTab(tab){
+  clearMsg();
+  document.getElementById('tab-login').classList.toggle('active', tab==='login');
+  document.getElementById('tab-signup').classList.toggle('active', tab==='signup');
+  document.getElementById('loginSection').classList.toggle('hidden', tab!=='login');
+  document.getElementById('signupSection').classList.toggle('hidden', tab!=='signup');
+  document.getElementById('forgotSection').classList.add('hidden');
+}
+
+function showForgot(){
+  clearMsg();
+  document.getElementById('loginSection').classList.add('hidden');
+  document.getElementById('signupSection').classList.add('hidden');
+  document.getElementById('forgotSection').classList.remove('hidden');
+  document.getElementById('tab-login').classList.remove('active');
+  document.getElementById('tab-signup').classList.remove('active');
+}
+
+/* ── MESSAGES ── */
+function showMsg(text,type){
+  const box=document.getElementById('msgBox');
+  const icon=document.getElementById('msgIcon');
+  const txt=document.getElementById('msgText');
+  txt.textContent=text;
+  box.className='msg-box show '+type;
+  if(type==='success'){
+    icon.innerHTML='<polyline points="20 6 9 17 4 12"/>';
+  }else{
+    icon.innerHTML='<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>';
+  }
+}
+function clearMsg(){
+  document.getElementById('msgBox').className='msg-box';
+}
+
+/* ── PASSWORD TOGGLE ── */
+function togglePwd(id,btn){
+  const inp=document.getElementById(id);
+  const isText=inp.type==='text';
+  inp.type=isText?'password':'text';
+  btn.querySelector('svg').innerHTML=isText
+    ?'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'
+    :'<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+}
+
+/* ── OTP countdown ── */
+function startOtpCountdown(btnId){
+  const btn=document.getElementById(btnId||'sendOtpBtn');
+  if(!btn)return;
+  let s=60;
+  btn.disabled=true;
+  otpTimer=setInterval(()=>{
+    btn.textContent=`Resend (${s}s)`;
+    s--;
+    if(s<0){clearInterval(otpTimer);btn.disabled=false;btn.textContent='Resend Verification Email';}
+  },1000);
+}
+
+const firebaseApp = firebase.apps.length ? firebase.app() : firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth(firebaseApp);
+
+function ensureFirebaseReady(){
+  if (!isFirebaseConfigured()) {
+    showMsg('Add your Firebase project credentials in firebase-config.js before using sign-up.', 'error');
+    return false;
+  }
+  return true;
+}
+
+/* ── SIGNUP ── */
+async function sendOTP(){
+  const name=document.getElementById('signupName').value.trim();
+  const email=document.getElementById('signupEmail').value.trim();
+  const pwd=document.getElementById('signupPassword').value;
+  if(!name||!email||!pwd){showMsg('Please fill in all fields first.','error');return;}
+  if(!ensureFirebaseReady()) return;
+
+  try {
+    const userCredential = await auth.createUserWithEmailAndPassword(email, pwd);
+    await userCredential.user.sendEmailVerification();
+    sessionStorage.setItem('tempName', name);
+    sessionStorage.setItem('tempEmail', email);
+    showMsg('Verification email sent to ' + email + '. Open it and confirm your address to finish sign-up.', 'success');
+    startOtpCountdown('sendOtpBtn');
+  } catch (err) {
+    showMsg(err.message || 'Unable to create account.', 'error');
+  }
+}
+
+async function verifyOTP(){
+  if(!ensureFirebaseReady()) return;
+  try {
+    await auth.currentUser.reload();
+    if (!auth.currentUser || !auth.currentUser.emailVerified) {
+      showMsg('Please confirm the verification email before continuing.', 'error');
+      return;
+    }
+    sessionStorage.setItem('loggedInUser', JSON.stringify({ name: sessionStorage.getItem('tempName') || auth.currentUser.displayName || 'User', email: auth.currentUser.email }));
+    showMsg('Account verified successfully. Please sign in.', 'success');
+    setTimeout(()=>switchTab('login'), 1200);
+  } catch (err) {
+    showMsg(err.message || 'Unable to verify account.', 'error');
+  }
+}
+
+/* ── LOGIN ── */
+async function loginUser(){
+  const email=document.getElementById('loginEmail').value.trim();
+  const pwd=document.getElementById('loginPassword').value;
+  if(!email||!pwd){showMsg('Please enter your email and password.','error');return;}
+  if(!ensureFirebaseReady()) return;
+
+  try {
+    const userCredential = await auth.signInWithEmailAndPassword(email, pwd);
+    await userCredential.user.reload();
+    if (!userCredential.user.emailVerified) {
+      await auth.signOut();
+      showMsg('Please verify your email first by opening the verification link sent to your inbox.', 'error');
+      return;
+    }
+    sessionStorage.setItem('loggedInUser', JSON.stringify({ name: userCredential.user.displayName || 'User', email: userCredential.user.email }));
+    showMsg('Signed in successfully. Redirecting…','success');
+    setTimeout(()=>{window.location.href='dashboard.html';},1200);
+  } catch (err) {
+    showMsg(err.message || 'Email or password is incorrect.', 'error');
+  }
+}
+
+/* ── FORGOT PASSWORD ── */
+async function forgotPassword(){
+  const email=document.getElementById('forgotEmail').value.trim();
+  if(!email){showMsg('Enter your registered email address.','error');return;}
+  if(!ensureFirebaseReady()) return;
+
+  try {
+    await auth.sendPasswordResetEmail(email);
+    showMsg('Password reset email sent. Check your inbox and follow the link.', 'success');
+  } catch (err) {
+    showMsg(err.message || 'Unable to send reset email.', 'error');
+  }
+}
+
+async function resetPassword(){
+  showMsg('Use the Firebase password reset link from your email instead of this form.', 'success');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "government-sewa-db-setup",
+  "version": "1.0.0",
+  "description": "MongoDB-backed backend for the Government Sewa website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.1",
+    "express": "^4.21.1",
+    "mongoose": "^8.9.1",
+    "serverless-http": "^3.0.0"
+  }
+}

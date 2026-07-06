@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="site-title">Government Sewa – Process Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Noto+Sans+Devanagari:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Brand Theme Palette Hex Design Tokens */
+    --brand-red:       #DC143C;
+    --brand-blue:      #003893;
+    --brand-blue-dark: #002868;
+    --brand-white:     #FFFFFF;
+
+    --bg-light:        #f3f7fc;
+    --text-dark:       #0f172a;
+    --text-mid:        #334155;
+    --text-muted:      #64748b;
+    --border:          #cbd5e1;
+    --blue-lighter:    #eef4ff;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 25px rgba(0, 56, 147, 0.05);
+    --shadow-lg: 0 20px 40px rgba(0, 40, 104, 0.12);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--brand-blue-dark);
+    color: rgba(255,255,255,0.88);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-right button {
+    background: none; border: none; color: rgba(255,255,255,0.75);
+    cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: all 0.2s ease;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .topbar-right button:hover { color: var(--brand-white); background: rgba(255,255,255,0.1); }
+  .topbar-right button.active { 
+    color: var(--brand-white); 
+    background-color: var(--brand-red); 
+    font-weight: 700; 
+  }
+  .topbar-sep { color: rgba(255,255,255,0.25); }
+
+  /* ── HEADER NAVIGATION ── */
+  .site-header {
+    background: var(--brand-white);
+    box-shadow: 0 4px 20px rgba(0, 56, 147, 0.03);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: auto;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  .logo-link { display: flex; align-items: center; gap: 13px; text-decoration: none; flex-shrink: 0; }
+  .logo-circle {
+    width: 44px; height: 44px;
+    background: var(--brand-blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brand-white);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 20px; font-weight: 700;
+  }
+  .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+  .logo-en { font-size: 16.5px; font-weight: 700; color: var(--text-dark); letter-spacing: -0.01em; }
+  .logo-ne { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 12px; font-weight: 600; color: var(--brand-red); }
+
+  nav { display: flex; gap: 4px; }
+  nav a {
+    text-decoration: none; color: #475569;
+    font-size: 14px; font-weight: 500;
+    padding: 8px 16px; border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  nav a:hover { color: var(--brand-blue); background: var(--blue-lighter); }
+  nav a.active { color: var(--brand-blue); font-weight: 600; background: var(--blue-lighter); }
+
+  .header-search {
+    margin-left: auto;
+    display: flex; align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    min-width: 220px;
+    transition: all 0.2s ease;
+  }
+  .header-search:focus-within {
+    background: var(--brand-white);
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.1);
+  }
+  .header-search input {
+    border: none; background: transparent; outline: none;
+    font-family: inherit; font-size: 14px; color: var(--text-dark); width: 100%;
+  }
+  .header-search input::placeholder { color: #94a3b8; }
+
+  .btn-login {
+    background: var(--brand-blue); color: var(--brand-white);
+    border: none; text-decoration: none;
+    padding: 10px 20px; border-radius: 6px;
+    font-weight: 600; font-size: 14px;
+    transition: all 0.2s ease; white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 56, 147, 0.15);
+  }
+  .btn-login:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0, 56, 147, 0.2); }
+
+  /* ── MAIN CONTENT ── */
+  .page {
+    padding: 68px 40px 80px;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+  }
+
+  .main-title-container {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .main-title {
+    font-size: 44px; font-weight: 800;
+    color: var(--brand-blue-dark);
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+
+  .main-sub {
+    font-size: 16px; color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* ── GRID SYSTEM ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 44px;
+  }
+
+  /* ── OVERHAULED CARD BUTTONS ── */
+  .card-button {
+    text-decoration: none;
+    background: var(--brand-blue); 
+    color: var(--brand-white);
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-sm);
+    display: flex; 
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.25s ease,
+                background-color 0.25s ease;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .card-button:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    background: var(--brand-red); 
+    border-color: var(--brand-white);
+  }
+
+  .card-header-row {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .card-name {
+    font-size: 24px; 
+    font-weight: 700;
+    color: var(--brand-white); 
+    margin-bottom: 4px;
+  }
+
+  .card-nepali {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 14px; 
+    font-weight: 600;
+    color: #ffb4c2; 
+    margin-bottom: 18px;
+    transition: color 0.2s ease;
+  }
+  .card-button:hover .card-nepali {
+    color: var(--brand-white);
+  }
+
+  .card-desc {
+    font-size: 14.5px; 
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.65; 
+    flex: 1; 
+    margin-bottom: 28px;
+  }
+
+  .card-footer {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 16px;
+    width: 100%;
+  }
+
+  .card-time {
+    font-size: 13px; 
+    font-weight: 500; 
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .card-link-action {
+    font-size: 14px; 
+    font-weight: 700; 
+    color: var(--brand-white);
+    display: flex; 
+    align-items: center; 
+    gap: 4px;
+    transition: gap 0.2s ease;
+  }
+  .card-button:hover .card-link-action {
+    gap: 8px;
+  }
+
+  .step-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--brand-white);
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  /* Responsive Handling */
+  @media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+  @media (max-width: 900px) { 
+    .header-inner { flex-direction: column; gap: 16px; padding: 16px 20px; } 
+    nav { flex-wrap: wrap; justify-content: center; }
+    .header-search { margin-left: 0; width: 100%; }
+    .page { padding: 40px 20px 60px; } 
+  }
+  @media (max-width: 600px) { 
+    .grid { grid-template-columns: 1fr; } 
+    .main-title { font-size: 32px; } 
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <span id="txt-portal-tag">Official portal of the Federal Democratic Republic of Nepal</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-lang active" id="lang-en">English</button>
+    <span class="topbar-sep">|</span>
+    <button class="topbar-lang" id="lang-ne">नेपाली</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <a class="logo-link" href="homepage.html">
+      <div class="logo-circle">न</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">नेपाल सरकार</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="homepage.html" id="nav-home">Home</a> 
+      <a href="services1.html" id="nav-services">Services</a>
+      <a href="form2.html" id="nav-offices">Offices</a>
+      <a href="pinky.html" id="nav-forms">Form</a> 
+      <a href="guidance.html" class="active" id="nav-guidance">Guidance</a> 
+      <a href="office-register.html" id="nav-contact">Register Office</a> 
+    </nav>
+
+    <div class="header-search">
+      <input type="text" id="header-search-input" placeholder="Search services...">
+    </div>
+
+    <a href="login.html" class="btn-login" id="btn-login-txt">Login / Register</a>
+
+  </div>
+</header>
+
+<main class="page">
+ 
+  <div class="main-title-container">
+    <h1 class="main-title" id="lbl-main-title">Guidance Roadmap</h1>
+    <p class="main-sub" id="lbl-main-sub">Click on any processing stage module card below to access requirements, structural maps, and redirected portal directions.</p>
+  </div>
+
+  <div class="grid">
+
+    <a href="prepare.html" class="card-button">
+      <div class="card-header-row">
+        <div class="card-name" id="stage1-title">Prepare Document</div>
+        <span class="step-badge" id="stage1-badge">Stage 01</span>
+      </div>
+      <div class="card-nepali" id="stage1-nep">कागजात तयारी</div>
+      <div class="card-desc" id="stage1-desc">Review absolute checklists, download essential verification sheets, and pre-compile bio-data elements before submission rules.</div>
+      <div class="card-footer">
+        <div class="card-time" id="stage1-footer-lbl">Prerequisites Checklist</div>
+        <div class="card-link-action"><span class="launch-text">Launch Process</span> &rsaquo;</div>
+      </div>
+    </a>
+
+    <a href="pinky.html" class="card-button">
+      <div class="card-header-row">
+        <div class="card-name" id="stage2-title">Fill Form</div>
+        <span class="step-badge" id="stage2-badge">Stage 02</span>
+      </div>
+      <div class="card-nepali" id="stage2-nep">फारम भर्नुहोस्</div>
+      <div class="card-desc" id="stage2-desc">Execute your electronic data submission directly through online portals and download your generated application slips instantly.</div>
+      <div class="card-footer">
+        <div class="card-time" id="stage2-footer-lbl">Online Submission</div>
+        <div class="card-link-action"><span class="launch-text">Launch Process</span> &rsaquo;</div>
+      </div>
+    </a>
+
+    <a href="form2.html" class="card-button">
+      <div class="card-header-row">
+        <div class="card-name" id="stage3-title">Visit Office</div>
+        <span class="step-badge" id="stage3-badge">Stage 03</span>
+      </div>
+      <div class="card-nepali" id="stage3-nep">कार्यालय भ्रमण</div>
+      <div class="card-desc" id="stage3-desc">Locate designated structural desks, secure digital queue configurations, and pass through physical metric evaluations.</div>
+      <div class="card-footer">
+        <div class="card-time" id="stage3-footer-lbl">Desk & Field Trials</div>
+        <div class="card-link-action"><span class="launch-text">Launch Process</span> &rsaquo;</div>
+      </div>
+    </a>
+
+  </div>
+
+</main>
+
+<script>
+  // Centralized Localization Matrix
+  const dict = {
+    en: {
+      title: "Government Sewa – Process Guidance",
+      portalTag: "Official portal of the Federal Democratic Republic of Nepal",
+      home: "Home", services: "Services", offices: "Offices", forms: "Form", guidance: "Guidance", contact: "Register Office",
+      login: "Login / Register",
+      searchPlaceholder: "Search services...",
+      mainTitle: "Guidance Roadmap",
+      mainSub: "Click on any processing stage module card below to access requirements, structural maps, and redirected portal directions.",
+      
+      stage1Title: "Prepare Document", stage1Badge: "Stage 01", stage1Nep: "कागजात तयारी", stage1Desc: "Review absolute checklists, download essential verification sheets, and pre-compile bio-data elements before submission rules.", stage1Footer: "Prerequisites Checklist",
+      stage2Title: "Fill Form", stage2Badge: "Stage 02", stage2Nep: "फारम भर्नुहोस्", stage2Desc: "Execute your electronic data submission directly through online portals and download your generated application slips instantly.", stage2Footer: "Online Submission",
+      stage3Title: "Visit Office", stage3Badge: "Stage 03", stage3Nep: "कार्यालय भ्रमण", stage3Desc: "Locate designated structural desks, secure digital queue configurations, and pass through physical metric evaluations.", stage3Footer: "Desk & Field Trials",
+      launchText: "Launch Process"
+    },
+    ne: {
+      title: "नेपाल सरकार – प्रक्रिया मार्गदर्शन",
+      portalTag: "नेपाल सरकारको आधिकारिक डिजिटल पोर्टल",
+      home: "गृहपृष्ठ", services: "सेवाहरू", offices: "कार्यालयहरू", forms: "फारम", guidance: "मार्गदर्शन", contact: "कार्यालय दर्ता",
+      login: "लगइन / दर्ता",
+      searchPlaceholder: "सेवाहरू खोज्नुहोस्...",
+      mainTitle: "मार्गदर्शन मार्गचित्र",
+      mainSub: "आवश्यकताहरू, संरचनात्मक नक्साहरू, र निर्देशित पोर्टल निर्देशनहरू पहुँच गर्न तलको कुनै पनि प्रशोधन चरण मोड्युल कार्डमा क्लिक गर्नुहोस्।",
+      
+      stage1Title: "कागजात तयारी", stage1Badge: "चरण ०१", stage1Nep: "कागजातहरू संकलन", stage1Desc: "निश्चित जाँच सूचीहरू समीक्षा गर्नुहोस्, आवश्यक प्रमाणीकरण पानाहरू डाउनलोड गर्नुहोस्, र दर्ता गर्नु अघि जैविक डाटा तत्वहरू पूर्व-कम्पाइल गर्नुहोस्।", stage1Footer: "आवश्यक पूर्वाधार सूची",
+      stage2Title: "फारम भर्नुहोस्", stage2Badge: "चरण ०२", stage2Nep: "अनलाइन फारम दर्ता", stage2Desc: "अनलाइन पोर्टलहरू मार्फत सीधा आफ्नो इलेक्ट्रोनिक डाटा सबमिशन कार्यान्वयन गर्नुहोस् र आफ्नो उत्पन्न आवेदन रसिदहरू तुरुन्तै डाउनलोड गर्नुहोस्।", stage2Footer: "अनलाइन सबमिशन प्रणाली",
+      stage3Title: "कार्यालय भ्रमण", stage3Badge: "चरण ०३", stage3Nep: "बायोमेट्रिक तथा ट्रायल", stage3Desc: "तोकिएको संरचनात्मक डेस्कहरू पत्ता लगाउनुहोस्, डिजिटल लामबद्धता कन्फिगरेसन सुरक्षित गर्नुहोस्, र भौतिक मेट्रिक मूल्याङ्कनहरू पार गर्नुहोस्।", stage3Footer: "डेस्क र फिल्ड ट्रायल",
+      launchText: "प्रक्रिया सुरु गर्नुहोस्"
+    }
+  };
+
+  function switchInterfaceLanguage(lang) {
+    const data = dict[lang];
+    
+    document.title = data.title;
+    document.getElementById('txt-portal-tag').innerText = data.portalTag;
+    document.getElementById('nav-home').innerText = data.home;
+    document.getElementById('nav-services').innerText = data.services;
+    document.getElementById('nav-offices').innerText = data.offices;
+    document.getElementById('nav-forms').innerText = data.forms;
+    document.getElementById('nav-guidance').innerText = data.guidance;
+    document.getElementById('nav-contact').innerText = data.contact;
+    document.getElementById('btn-login-txt').innerText = data.login;
+    document.getElementById('header-search-input').placeholder = data.searchPlaceholder;
+
+    document.getElementById('lbl-main-title').innerText = data.mainTitle;
+    document.getElementById('lbl-main-sub').innerText = data.mainSub;
+
+    // Card localization hooks
+    document.getElementById('stage1-title').innerText = data.stage1Title;
+    document.getElementById('stage1-badge').innerText = data.stage1Badge;
+    document.getElementById('stage1-nep').innerText = data.stage1Nep;
+    document.getElementById('stage1-desc').innerText = data.stage1Desc;
+    document.getElementById('stage1-footer-lbl').innerText = data.stage1Footer;
+
+    document.getElementById('stage2-title').innerText = data.stage2Title;
+    document.getElementById('stage2-badge').innerText = data.stage2Badge;
+    document.getElementById('stage2-nep').innerText = data.stage2Nep;
+    document.getElementById('stage2-desc').innerText = data.stage2Desc;
+    document.getElementById('stage2-footer-lbl').innerText = data.stage2Footer;
+
+    document.getElementById('stage3-title').innerText = data.stage3Title;
+    document.getElementById('stage3-badge').innerText = data.stage3Badge;
+    document.getElementById('stage3-nep').innerText = data.stage3Nep;
+    document.getElementById('stage3-desc').innerText = data.stage3Desc;
+    document.getElementById('stage3-footer-lbl').innerText = data.stage3Footer;
+
+    const launchLabels = document.querySelectorAll('.launch-text');
+    launchLabels.forEach(el => el.innerText = data.launchText);
+  }
+
+  function handleRouting(query) {
+    const standardizedQuery = query.toLowerCase().trim();
+    if (standardizedQuery === "driving licence" || standardizedQuery === "driving license" || standardizedQuery === "license") {
+      window.location.href = "prepare.html";
+    } else {
+      window.location.href = query ? `services1.html?query=${encodeURIComponent(query)}` : `services1.html`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnEn = document.getElementById('lang-en');
+    const btnNe = document.getElementById('lang-ne');
+
+    btnEn.addEventListener('click', () => {
+      btnEn.classList.add('active');
+      btnNe.classList.remove('active');
+      switchInterfaceLanguage('en');
+    });
+
+    btnNe.addEventListener('click', () => {
+      btnNe.classList.add('active');
+      btnEn.classList.remove('active');
+      switchInterfaceLanguage('ne');
+    });
+
+    const hInput = document.getElementById('header-search-input');
+    hInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        handleRouting(hInput.value);
+      }
+    });
+  });
+</script>
+</body>
+</html>

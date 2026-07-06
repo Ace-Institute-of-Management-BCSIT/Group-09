@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Sewa – Offline Bank Voucher Sample</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Exact Brand Theme Palette Hex Design Tokens */
+    --brand-red:     #DC143C;
+    --brand-blue:    #003893;
+    --brand-blue-dark: #002868;
+    --brand-white:   #FFFFFF;
+    
+    --bg-light:     #f8fafc;
+    --text-dark:    #0f1923;
+    --text-mid:     #334155;
+    --text-muted:   #64748b;
+    --border:       #cbd5e1;
+    --shadow-sm:    0 1px 3px rgba(0,0,0,0.07);
+    --blue-lighter: #eef4ff;
+    
+    --translucent-bg: rgba(220, 20, 60, 0.08);
+    --placeholder-grey: rgba(100, 116, 139, 0.85); 
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ── PLATFORM-MATCHED TOPBAR ── */
+  .topbar {
+    background: var(--brand-blue-dark);
+    color: rgba(255,255,255,0.88);
+    padding: 9px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 8px; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-right button {
+    background: none; border: none; color: rgba(255,255,255,0.82);
+    cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: color 0.15s;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .topbar-right button:hover { color: var(--brand-white); }
+  .topbar-right button.active { 
+    color: var(--brand-white); 
+    background-color: var(--brand-red); 
+    font-weight: 700; 
+  }
+  .topbar-sep { color: rgba(255,255,255,0.3); }
+
+  /* ── HEADER & NAVIGATION MODULE ── */
+  .site-header {
+    background: var(--brand-white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: auto;
+    padding: 18px 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-link { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+  .logo-circle {
+    width: 46px; height: 46px;
+    background: var(--brand-blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--brand-white);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 21px; font-weight: 700;
+  }
+  .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+  .logo-en { font-size: 16.5px; font-weight: 700; color: #111827; letter-spacing: -0.01em; }
+  .logo-ne { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 12px; font-weight: 600; color: var(--brand-red); }
+
+  nav { display: flex; gap: 6px; }
+  nav a {
+    text-decoration: none; color: #374151;
+    font-size: 14.5px; font-weight: 500;
+    padding: 6px 12px; border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  nav a:hover { color: var(--brand-blue); background: var(--blue-lighter); }
+  nav a.active { color: var(--brand-blue); font-weight: 600; background: var(--blue-lighter); }
+
+  /* ── SEARCH & INTERACTION FIELDS ── */
+  .header-search {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 8px;
+    background: #f3f4f6;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 50px;
+    padding: 8px 18px;
+    min-width: 210px;
+    transition: border-color 0.2s;
+  }
+  .header-search:focus-within { border-color: #93aee8; }
+  .header-search input {
+    border: none; background: transparent; outline: none;
+    font-family: inherit; font-size: 14px; color: #111827; width: 100%;
+  }
+  .header-search input::placeholder { color: #9ca3af; }
+
+  .btn-login {
+    background: var(--brand-blue);
+    color: var(--brand-white);
+    border: none; text-decoration: none;
+    padding: 12px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 14px;
+    cursor: pointer; transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .btn-login:hover { background: var(--brand-blue-dark); }
+
+  /* ── MAIN LAYOUT SYSTEM ── */
+  .voucher-section { padding: 40px 1.5rem 60px; }
+  .voucher-container { max-width: 850px; margin: 0 auto; }
+
+  .guide-intro { 
+    background: var(--translucent-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 24px; 
+    text-align: center;
+    border: 1px solid rgba(220, 20, 60, 0.15);
+  }
+  .guide-intro h2 { color: var(--brand-blue); font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+  .guide-intro p { color: var(--text-mid); font-size: 14.5px; }
+
+  /* ── VOUCHER COMPONENT STRUCTURAL FRAME ── */
+  .voucher-card {
+    background: var(--brand-white);
+    border: 2px solid var(--brand-blue);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .voucher-card::before {
+    content: "SAMPLE ONLY / नमूना मात्र";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(0, 56, 147, 0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .v-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--brand-blue);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+  }
+  .nimb-brand-wrapper { display: flex; align-items: center; gap: 12px; }
+  .nimb-official-svg { width: 48px; height: 48px; flex-shrink: 0; }
+  .nimb-text-identity { display: flex; flex-direction: column; line-height: 1.15; }
+  .nimb-name-primary { font-size: 20px; font-weight: 800; color: var(--brand-blue); letter-spacing: -0.2px; }
+  .nimb-name-sub { font-size: 9px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2px; }
+
+  .slip-title-block { text-align: center; }
+  .slip-main-title { font-size: 14px; font-weight: 800; color: var(--brand-white); background: var(--brand-blue); padding: 5px 14px; border-radius: 3px; letter-spacing: 0.5px; }
+  .slip-sub-title { font-size: 11px; color: var(--text-mid); font-weight: 600; margin-top: 5px; }
+
+  .date-box { font-size: 12px; font-weight: 700; border: 1px solid var(--border); padding: 6px 12px; background: #f8fafc; border-radius: 4px; white-space: nowrap; }
+
+  .v-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 20px; }
+  .v-fields-left { display: flex; flex-direction: column; gap: 14px; }
+  
+  .v-row { display: flex; border-bottom: 1px dashed var(--border); padding-bottom: 6px; align-items: flex-end; }
+  .v-label { font-size: 13px; font-weight: 700; color: var(--text-dark); min-width: 160px; flex-shrink: 0; }
+  
+  .v-value-placeholder { font-size: 13.5px; color: var(--placeholder-grey); font-weight: 500; width: 100%; padding-left: 6px; }
+
+  .denom-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .denom-table th, .denom-table td { border: 1px solid var(--border); padding: 6px; text-align: center; }
+  .denom-table th { background: #f1f5f9; font-weight: 700; color: var(--text-dark); }
+  .denom-input-placeholder { color: var(--placeholder-grey); font-weight: 600; }
+
+  .v-footer-note {
+    background: #fff5f5;
+    border-left: 4px solid var(--brand-red);
+    padding: 12px; font-size: 12px; color: #9b1c1c; line-height: 1.5;
+    border-radius: 0 6px 6px 0; margin-top: 15px;
+    border-top: 1px solid rgba(220, 20, 60, 0.1);
+    border-right: 1px solid rgba(220, 20, 60, 0.1);
+    border-bottom: 1px solid rgba(220, 20, 60, 0.1);
+  }
+
+  /* ── RESPONSIVE DESIGN VARIATION QUERY SLATES ── */
+  @media (max-width: 900px) {
+    .header-inner { flex-direction: column; height: auto; padding: 14px 2rem; gap: 14px; }
+    nav { flex-wrap: wrap; justify-content: center; }
+    .header-search { margin-left: 0; width: 100%; }
+  }
+  @media (max-width: 768px) {
+    .v-grid { grid-template-columns: 1fr; }
+    .v-header { flex-direction: column; gap: 14px; align-items: center; text-align: center; }
+    .v-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR MODULE COMPONENT -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span id="txt-portal-tag">Official portal of the Federal Democratic Republic of Nepal</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-lang active" id="lang-en">English</button>
+    <span class="topbar-sep">|</span>
+    <button class="topbar-lang" id="lang-ne">नेपाली</button>
+  </div>
+</div>
+
+<!-- HEADER NAVIGATION COMPONENT -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="homepage.html">
+      <div class="logo-circle">न</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">नेपाल सरकार</span>
+      </div>
+    </a>
+    
+    <nav>
+      <a href="homepage.html" id="nav-home">Home</a> 
+      <a href="pi.html" id="nav-services">Services</a>
+      <a href="form2.html" id="nav-offices">Offices</a>
+      <a href="pinky.html" id="nav-forms" class="active">Form</a> 
+      <a href="guidance.html" id="nav-guidance">Guidance</a> 
+      <a href="office-register.html" id="nav-contact">Register Office</a> 
+    </nav>
+
+
+    <a href="login.html" class="btn-login" id="btn-login-txt">Login / Register</a>
+  </div>
+</header>
+
+<!-- MAIN APP SLATE WRAPPER -->
+<section class="voucher-section">
+  <div class="voucher-container">
+    
+    <div class="guide-intro">
+      <h2 id="title-main">Offline Bank Deposit Voucher Guide</h2>
+      <p id="subtitle-main">Follow this blueprint layout to accurately fill out the physical paper slip at the Nepal Investment Mega Bank counter.</p>
+    </div>
+
+    <!-- MAIN MODEL RENDERING ENGINE VOUCHER CONTAINER -->
+    <div class="voucher-card">
+      
+      <div class="v-header">
+        <div class="nimb-brand-wrapper">
+          <svg class="nimb-official-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 75L50 20L85 75H65L50 50L35 75H15Z" fill="#003893"/>
+            <path d="M35 75L50 50L65 75H52L50 71L48 75H35Z" fill="#22c55e"/>
+            <circle cx="50" cy="38" r="4" fill="#22c55e"/>
+          </svg>
+          <div class="nimb-text-identity">
+            <span class="nimb-name-primary">NIMB</span>
+            <span class="nimb-name-sub" id="bank-sub-title">Nepal Investment Mega Bank Ltd.</span>
+          </div>
+        </div>
+        <div class="slip-title-block">
+          <span class="slip-main-title" id="slip-title">DEPOSIT SLIP / जम्मा भौचर</span>
+          <div class="slip-account-type" id="slip-account-type">Account Type: Government Revenue Account</div>
+        </div>
+        <div class="date-box">
+          <span id="lbl-date">Date:</span> <span class="v-value-placeholder" id="v-date">Current date</span>
+        </div>
+      </div>
+
+      <div class="v-grid">
+        <!-- Left Data Parameters Segment -->
+        <div class="v-fields-left">
+          <div class="v-row">
+            <span class="v-label" id="f-office-name">Office Name:</span>
+            <span class="v-value-placeholder" id="v-office-name">Department of Transport Management (DOTM) / Ekantakuna Office</span>
+          </div>
+          <div class="v-row">
+            <span class="v-label" id="f-office-code">Office Code:</span>
+            <span class="v-value-placeholder" id="v-office-code">345013501 (Example Office Registration Number)</span>
+          </div>
+          <div class="v-row">
+            <span class="v-label" id="f-revenue-head">Revenue Heading No:</span>
+            <span class="v-value-placeholder" id="v-revenue-head">14224 (Driving License Application Fee Head)</span>
+          </div>
+          <div class="v-row">
+            <span class="v-label" id="f-applicant-name">Applicant Name:</span>
+            <span class="v-value-placeholder" id="v-applicant-name">Your full name goes here</span>
+          </div>
+          <div class="v-row">
+            <span class="v-label" id="f-amount-words">Amount in Words:</span>
+            <span class="v-value-placeholder" id="v-amount-words">Five hundred rupees only</span>
+          </div>
+          <div class="v-row">
+            <span class="v-label" id="f-amount-figs">Total Amount (Rs.):</span>
+            <span class="v-value-placeholder" id="v-amount-figs">500.00 /-</span>
+          </div>
+          <div class="v-row">
+            <span class="v-label" id="f-depositor-sig">Depositor Signature:</span>
+            <span class="v-value-placeholder" id="v-depositor-sig">Sign your name here</span>
+          </div>
+        </div>
+
+        <!-- Right Cash Denomination Section Matrix Box -->
+        <div>
+          <table class="denom-table">
+            <thead>
+              <tr>
+                <th id="th-note">Note</th>
+                <th id="th-count">Count</th>
+                <th id="th-total">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1000</td><td>-</td><td>-</td></tr>
+              <tr><td>500</td><td class="denom-input-placeholder">1</td><td class="denom-input-placeholder">500</td></tr>
+              <tr><td>100</td><td>-</td><td>-</td></tr>
+              <tr><td>50</td><td>-</td><td>-</td></tr>
+              <tr><td>20</td><td>-</td><td>-</td></tr>
+              <tr><td>10</td><td>-</td><td>-</td></tr>
+              <tr><td colspan="2" style="text-align:right; font-weight:700;" id="td-total-lbl">Total:</td><td class="denom-input-placeholder">500/-</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="v-footer-note" id="v-footer">
+        <strong>CRITICAL INSTRUCTION:</strong> Do not lose the bank-stamped customer copy slip given back by the teller. You must produce this physical token receipt along with your original Citizenship Card at the counter for biometric validation profiling.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZATION PIPELINE CONTROLLER SCRIPT -->
+<script>
+  const dict = {
+    en: {
+      portalTag: "Official portal of the Federal Democratic Republic of Nepal",
+      home: "Home", services: "Services", offices: "Offices", forms: "Form", guidance: "Guidance", contact: "Register Office",
+      login: "Login / Register",
+      searchPlaceholder: "Search services...",
+      mainTitle: "Offline Bank Deposit Voucher Guide",
+      mainSubtitle: "Follow this blueprint layout to accurately fill out the physical paper slip at the Nepal Investment Mega Bank counter.",
+      bankSub: "Nepal Investment Mega Bank Ltd.",
+      slipTitle: "DEPOSIT SLIP / जम्मा भौचर",
+      acctType: "Account Type: Government Revenue Account",
+      lblDate: "Date:",
+      vDate: "Current date",
+      fOfficeName: "Office Name:",
+      vOfficeName: "Department of Transport Management (DOTM) / Ekantakuna Office",
+      fOfficeCode: "Office Code:",
+      vOfficeCode: "345013501 (Example Office Registration Number)",
+      fRevHead: "Revenue Heading No:",
+      vRevHead: "14224 (Driving License Application Fee Head)",
+      fApplicantName: "Applicant Name:",
+      vApplicantName: "Your full name goes here",
+      fAmtWords: "Amount in Words:",
+      vAmtWords: "Five hundred rupees only",
+      fAmtFigs: "Total Amount (Rs.):",
+      vAmtFigs: "500.00 /-",
+      fSig: "Depositor Signature:",
+      vSig: "Sign your name here",
+      thNote: "Note", thCount: "Count", thTotal: "Total", tdTotalLbl: "Total:",
+      footer: "<strong>CRITICAL INSTRUCTION:</strong> Do not lose the bank-stamped customer copy slip given back by the teller. You must produce this physical token receipt along with your original Citizenship Card at the counter for biometric validation profiling."
+    },
+    ne: {
+      portalTag: "नेपाल सरकारको आधिकारिक पोर्टल",
+      home: "गृहपृष्ठ", services: "सेवाहरू", offices: "कार्यालयहरू", forms: "फारम", guidance: "मार्गदर्शन", contact: "कार्यालय दर्ता",
+      login: "लगइन / दर्ता",
+      searchPlaceholder: "सेवाहरू खोज्नुहोस्...",
+      mainTitle: "अफलाइन बैंक जम्मा भौचर सहयोगी ढाँचा",
+      mainSubtitle: "नेपाल इन्भेष्टमेन्ट मेगा बैंकको काउन्टरमा उपलब्ध हुने कागजी भौचर भर्दा गल्ती हुन नदिन यो नमूना संरचना पछ्याउनुहोस्।",
+      bankSub: "नेपाल इन्भेष्टमेन्ट मेगा बैंक लि.",
+      slipTitle: "जम्मा भौचर / DEPOSIT SLIP",
+      acctType: "खाताको प्रकार: सरकारी राजस्व खाता",
+      lblDate: "मिति:",
+      vDate: "आजको मिति",
+      fOfficeName: "कार्यालयको नाम:",
+      vOfficeName: "यातायात व्यवस्था विभाग (DOTM) / एकान्तकुना कार्यालय",
+      fOfficeCode: "कार्यालय कोड:",
+      vOfficeCode: "३४५०१३५०१ (नमूना कार्यालय दर्ता नम्बर)",
+      fRevHead: "राजस्व शीर्षक नं:",
+      vRevHead: "१४२२४ (सवारी चालक अनुमति पत्र दस्तुर)",
+      fApplicantName: "आवेदकको नाम:",
+      vApplicantName: "आफ्नो पूरा नाम यहाँ लेख्नुहोस्",
+      fAmtWords: "अक्षरेपी रकम:",
+      vAmtWords: "पाँच सय रुपैयाँ मात्र",
+      fAmtFigs: "कुल रकम (रु.):",
+      vAmtFigs: "५००.०० /-",
+      fSig: "जम्माकर्ताको हस्ताक्षर:",
+      vSig: "आफ्नो हस्ताक्षर यहाँ गर्नुहोस्",
+      thNote: "नोट", thCount: "संख्या", thTotal: "जम्मा", tdTotalLbl: "कुल जम्मा:",
+      footer: "<strong>महत्वपूर्ण निर्देशन:</strong> बैंक टेलरले छाप लगाएर फिर्ता दिने ग्राहक प्रति (Customer Copy) सुरक्षित राच्छुहोस्। बायोमेट्रिक वा लिखित परीक्षाको दिन यो सक्कल भौचर नगद बुझाएको प्रमाणको रूपमा अनिवार्य बुझाउनुपर्छ।"
+    }
+  };
+
+  function switchInterfaceLanguage(lang) {
+    const data = dict[lang];
+    
+    // Header static content fields updates
+    document.getElementById('txt-portal-tag').innerText = data.portalTag;
+    document.getElementById('nav-home').innerText = data.home;
+    document.getElementById('nav-services').innerText = data.services;
+    document.getElementById('nav-offices').innerText = data.offices;
+    document.getElementById('nav-forms').innerText = data.forms;
+    document.getElementById('nav-guidance').innerText = data.guidance;
+    document.getElementById('nav-contact').innerText = data.contact;
+    document.getElementById('btn-login-txt').innerText = data.login;
+    document.getElementById('search-input').placeholder = data.searchPlaceholder;
+
+    // Voucher core content field updates
+    document.getElementById('title-main').innerText = data.mainTitle;
+    document.getElementById('subtitle-main').innerText = data.mainSubtitle;
+    document.getElementById('bank-sub-title').innerText = data.bankSub;
+    document.getElementById('slip-title').innerText = data.slipTitle;
+    document.getElementById('slip-account-type').innerText = data.acctType;
+    document.getElementById('lbl-date').innerText = data.lblDate;
+    document.getElementById('v-date').innerText = data.vDate;
+    document.getElementById('f-office-name').innerText = data.fOfficeName;
+    document.getElementById('v-office-name').innerText = data.vOfficeName;
+    document.getElementById('f-office-code').innerText = data.fOfficeCode;
+    document.getElementById('v-office-code').innerText = data.vOfficeCode;
+    document.getElementById('f-revenue-head').innerText = data.fRevHead;
+    document.getElementById('v-revenue-head').innerText = data.vRevHead;
+    document.getElementById('f-applicant-name').innerText = data.fApplicantName;
+    document.getElementById('v-applicant-name').innerText = data.vApplicantName;
+    document.getElementById('f-amount-words').innerText = data.fAmtWords;
+    document.getElementById('v-amount-words').innerText = data.vAmtWords;
+    document.getElementById('f-amount-figs').innerText = data.fAmtFigs;
+    document.getElementById('v-amount-figs').innerText = data.vAmtFigs;
+    document.getElementById('f-depositor-sig').innerText = data.fSig;
+    document.getElementById('v-depositor-sig').innerText = data.vSig;
+    document.getElementById('th-note').innerText = data.thNote;
+    document.getElementById('th-count').innerText = data.thCount;
+    document.getElementById('th-total').innerText = data.thTotal;
+    document.getElementById('td-total-lbl').innerText = data.tdTotalLbl;
+    document.getElementById('v-footer').innerHTML = data.footer;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnEn = document.getElementById('lang-en');
+    const btnNe = document.getElementById('lang-ne');
+
+    btnEn.addEventListener('click', () => {
+      btnEn.classList.add('active');
+      btnNe.classList.remove('active');
+      switchInterfaceLanguage('en');
+    });
+
+    btnNe.addEventListener('click', () => {
+      btnNe.classList.add('active');
+      btnEn.classList.remove('active');
+      switchInterfaceLanguage('ne');
+    });
+  });
+</script>
+</body>
+</html>

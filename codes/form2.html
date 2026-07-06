@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="site-title">Government Sewa – Step-by-Step Office Route Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Noto+Sans+Devanagari:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* --- BRAND INTEGRATED DESIGN SYSTEM COLOR TOKENS --- */
+  :root {
+    --brand-red:       #DC143C;
+    --brand-blue:      #003893;
+    --brand-blue-dark: #002868;
+    --brand-white:     #FFFFFF;
+
+    --bg-light:        #f3f7fc;
+    --text-dark:       #0f172a;
+    --text-mid:        #334155;
+    --text-muted:      #64748b;
+    --border:          #cbd5e1;
+    --blue-lighter:    #eef4ff;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 10px 25px rgba(0, 56, 147, 0.05);
+    --shadow-lg: 0 20px 40px rgba(0, 40, 104, 0.12);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-light); }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #a8b2c1; }
+
+  /* ── TOPBAR FIXES (MATCHED TO HOMEPAGE) ── */
+  .topbar {
+    background: var(--brand-blue-dark);
+    color: rgba(255,255,255,0.88);
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+  .topbar-right button {
+    background: none; border: none; color: rgba(255,255,255,0.75);
+    cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: all 0.2s ease;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none; /* Fixed old underline bug */
+  }
+  .topbar-right button:hover { color: var(--brand-white); background: rgba(255,255,255,0.1); }
+  .topbar-right button.active { 
+    color: var(--brand-white); 
+    background-color: var(--brand-red); 
+    font-weight: 700; 
+  }
+  .topbar-sep { color: rgba(255,255,255,0.25); }
+
+  /* ── PLATFORM-MATCHED HEADER NAVIGATION ── */
+  .site-header {
+    background: var(--brand-white);
+    box-shadow: 0 4px 20px rgba(0, 56, 147, 0.03);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: auto;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .logo-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    flex-shrink: 0;
+  }
+
+  .logo-circle {
+    width: 44px;
+    height: 44px;
+    background: var(--brand-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-white);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+  .logo-en { font-size: 16.5px; font-weight: 700; color: var(--text-dark); letter-spacing: -0.01em; }
+  .logo-ne { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 12px; font-weight: 600; color: var(--brand-red); }
+
+  nav { display: flex; gap: 4px; }
+  nav a {
+    text-decoration: none; 
+    color: #475569;
+    font-size: 14px; 
+    font-weight: 500;
+    padding: 8px 16px; 
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  nav a:hover { color: var(--brand-blue); background: var(--blue-lighter); }
+  nav a.active { color: var(--brand-blue); background: var(--blue-lighter); font-weight: 600; }
+
+  .btn-login {
+    background: var(--brand-blue); color: var(--brand-white);
+    border: none; text-decoration: none;
+    padding: 10px 20px; border-radius: 6px;
+    font-weight: 600; font-size: 14px;
+    transition: all 0.2s ease; white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0, 56, 147, 0.15);
+  }
+  .btn-login:hover { background: var(--brand-blue-dark); transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0, 56, 147, 0.2); }
+
+  /* --- GUIDANCE LAYOUT SYSTEM --- */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 50px 40px 80px;
+    width: 100%;
+  }
+
+  .guidance-inner {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .office-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    background: #fff0f2;
+    color: var(--brand-red);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+    border: 1px solid #fcd4da;
+    text-transform: uppercase;
+  }
+  
+  .guidance-h2 {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--brand-blue-dark);
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  
+  .office-selector-wrapper {
+    margin-bottom: 40px;
+    background: var(--brand-white);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .office-select-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-mid);
+    margin-bottom: 10px;
+  }
+  
+  .office-dropdown {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-dark);
+    background-color: var(--brand-white);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .office-dropdown:focus {
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.12);
+  }
+
+  /* --- VERTICAL TIMELINE --- */
+  .timeline-container {
+    position: relative;
+    padding-left: 35px;
+  }
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 15px;
+    bottom: 15px;
+    width: 2px;
+    background: var(--border);
+  }
+  
+  .timeline-step {
+    position: relative;
+    background: var(--brand-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .timeline-step:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .timeline-badge {
+    position: absolute;
+    left: -35px;
+    top: 24px;
+    width: 28px;
+    height: 28px;
+    background: var(--brand-blue);
+    color: var(--brand-white);
+    font-size: 13px;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+    z-index: 2;
+    border: 3px solid var(--brand-white);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+  
+  .step-room {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brand-blue);
+  }
+  
+  .step-location-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brand-red);
+    background: #fff0f2;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #fcd4da;
+    white-space: nowrap;
+  }
+  
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  
+  .step-instruction {
+    font-size: 14.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  
+  .step-tip {
+    margin-top: 16px;
+    background: #f8fafc;
+    border-left: 3.5px solid var(--brand-red);
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    border-radius: 0 8px 8px 0;
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* --- RESPONSIVE MEDIA BREAKPOINTS --- */
+  @media (max-width: 900px) {
+    .header-inner {
+      flex-direction: column;
+      padding: 16px 20px;
+      gap: 16px;
+    }
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .container {
+      padding: 30px 20px 60px;
+    }
+    .guidance-h2 {
+      font-size: 28px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR MODULE COMPONENT -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span id="txt-portal-tag">Official portal of the Federal Democratic Republic of Nepal</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-lang active" id="lang-en">English</button>
+    <span class="topbar-sep">|</span>
+    <button class="topbar-lang" id="lang-ne">नेपाली</button>
+  </div>
+</div>
+
+<!-- HEADER NAVIGATION COMPONENT -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="homepage.html">
+      <div class="logo-circle">न</div>
+      <div class="logo-texts">
+        <span class="logo-en">Government Sewa</span>
+        <span class="logo-ne">नेपाल सरकार</span>
+      </div>
+    </a>
+    <nav>
+      <a href="homepage.html" id="nav-home">Home</a> 
+      <a href="pi.html" id="nav-services">Services</a>
+      <a href="form2.html" class="active" id="nav-offices">Offices</a>
+      <a href="pinky.html" id="nav-forms">Forms</a> 
+      <a href="guidance.html" id="nav-guidance">Guidance</a> 
+      <a href="office-register.html" id="nav-contact">Register Office</a> 
+    </nav>
+    <a href="login.html" class="btn-login" id="btn-login-txt">Login / Register</a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="guidance-inner">
+    
+    <div class="office-eyebrow" id="txt-eyebrow">Inside-Office Route Navigation</div>
+    <h2 class="guidance-h2" id="txt-heading">Driving License Office Guide</h2>
+    
+    <div class="office-selector-wrapper">
+      <label class="office-select-label" id="txt-select-label" for="office-select">Select Your Kathmandu Valley Office branch:</label>
+      <select id="office-select" class="office-dropdown"></select>
+    </div>
+
+    <div class="timeline-container" id="timeline-target"></div>
+
+  </div>
+</main>
+
+<script>
+  // Dynamic Localization State Control
+  let currentLang = 'en';
+
+  // Dynamic Dictionary Layout Mappings
+  const uiLabels = {
+    en: {
+      title: "Government Sewa – Step-by-Step Office Route Guide",
+      portalTag: "Official portal of the Federal Democratic Republic of Nepal",
+      home: "Home", services: "Services", offices: "Offices", forms: "Forms", guidance: "Guidance", contact: "Register Office",
+      login: "Login / Register",
+      eyebrow: "Inside-Office Route Navigation",
+      heading: "Driving License Office Guide",
+      selectLabel: "Select Your Kathmandu Valley Office branch:",
+      tipLabel: "Tip"
+    },
+    ne: {
+      title: "नेपाल सरकार – कार्यालय मार्ग निर्देशिका",
+      portalTag: "नेपाल सरकारको आधिकारिक डिजिटल पोर्टल",
+      home: "गृहपृष्ठ", services: "सेवाहरू", offices: "कार्यालयहरू", forms: "फारमहरू", guidance: "मार्गदर्शन", contact: "कार्यालय दर्ता",
+      login: "लगइन / दर्ता",
+      eyebrow: "कार्यालय भित्रको मार्ग निर्देशिका",
+      heading: "सवारी चालक अनुमति पत्र कार्यालय निर्देशिका",
+      selectLabel: "काठमाडौं उपत्यका भित्रको आफ्नो कार्यालय शाखा छनौट गर्नुहोस्:",
+      tipLabel: "सुझाव"
+    }
+  };
+
+  const dropdownOptions = {
+    en: [
+      { value: "ekantakuna", text: "Ekantakuna, Lalitpur (Transport Management Office)" },
+      { value: "thulobharyang", text: "Thulo Bharyang, Swayambhu (Driver License Office)" },
+      { value: "chabahil", text: "Chabahil, Sukedhara (Driver License Office)" },
+      { value: "bhaktapur", text: "Radhe Radhe, Bhaktapur (Driver License Office)" }
+    ],
+    ne: [
+      { value: "ekantakuna", text: "एकान्तकुना, ललितपुर (यातायात व्यवस्था कार्यालय)" },
+      { value: "thulobharyang", text: "ठूलो भर्‍याङ, स्वयम्भू (चालक अनुमति पत्र कार्यालय)" },
+      { value: "chabahil", text: "चाबहिल, सुकेधारा (चालक अनुमति पत्र कार्यालय)" },
+      { value: "bhaktapur", text: "राधे राधे, भक्तपुर (चालक अनुमति पत्र कार्यालय)" }
+    ]
+  };
+
+  const routesData = {
+    en: {
+      ekantakuna: [
+        { step: 1, room: "Room 102 – Main Block", floor: "Ground Floor", title: "Document Verification & Biometrics", desc: "Present your printed online confirmation sheet along with original Citizenship papers. Live headshots and fingerprints are indexed here.", tip: "Arrive 20 mins early; queues loop outside the corridor window." },
+        { step: 2, room: "Counter 4 – Cash Terminal", floor: "Main Yard Lobby", title: "Fee Payment Checkpoint", desc: "Submit the approved biometrics form token here to clear processing and registration fees.", tip: "Keep exactly NPR 500 or NPR 1000 in cash. Digital payments are occasionally offline." },
+        { step: 3, room: "Room 108 – Health Desk", floor: "First Floor Left Wing", title: "Vision & Medical Assessment", desc: "Mandatory color blindness testing via Ishihara plates and basic peripheral sight line validation.", tip: null },
+        { step: 4, room: "Window 12 – Dispatch Terminal", floor: "Outer Compound Gates", title: "Exam Ticket Distribution", desc: "Collect your finalized stamped admit ticket for the upcoming written exam or trial field.", tip: null }
+      ],
+      thulobharyang: [
+        { step: 1, room: "Room 1 – Intake Counter", floor: "Ground Floor Right Block", title: "Biometrics Registration", desc: "Initial cross-checking of your DOTM portal application number details alongside your physical Nagarikta profile documents.", tip: "Ensure your live camera photo matches your clean look; this appears directly on your final smart card." },
+        { step: 2, room: "Counter 3 – Revenue Desk", floor: "Ground Floor Central", title: "Application Fee Collection", desc: "Pay your scheduled structural processing dues to the counter attendant to receive an automated validation receipt tag.", tip: null },
+        { step: 3, room: "Room 5 – Vision Room", floor: "Second Floor", title: "Eye Test & Health Pass", desc: "Quick test of vision performance parameters and physical fitness sign-off.", tip: null },
+        { step: 4, room: "Room 9 – Verification Hub", floor: "Second Floor Back Wing", title: "Written Exam Slate Allocation", desc: "Final tracking step where your entry metrics are signed into the database, generating your test admit card.", tip: "Take note of your assigned examination center address printed on this paper slip." }
+      ],
+      chabahil: [
+        { step: 1, room: "Room B1 – Biometrics Bay", floor: "Basement / Ground Entrance", title: "Verification & Data Entry", desc: "Submission of online token queues, verification of citizenship records, and tracking digital thumbprint logging.", tip: "Ensure you are holding a valid blood group lab report in your hand right here." },
+        { step: 2, room: "Counter 2 – Billing Window", floor: "Ground Floor Front Lobby", title: "Revenue Remittance Payment", desc: "Payment terminal to authorize entry tracking files for active screening processing workflows.", tip: "Keep your hard-copy physical receipt safe; you cannot enter any test site without it." },
+        { step: 3, room: "Room 104 – Checkup Center", floor: "First Floor Center Corridor", title: "Medical Assessment & Sight Evaluation", desc: "Quick verification screening for color recognition limits and general respiratory/sight fitness tests.", tip: null },
+        { step: 4, room: "Room 106 – Chief Officer Desk", floor: "First Floor End Section", title: "Final Admission Ticket Stamping", desc: "Final administrative validation authorization resulting in the release of your official test access slip.", tip: null }
+      ],
+      bhaktapur: [
+        { step: 1, room: "Counter 1 – Front Registration", floor: "Ground Floor Block A", title: "Document Check & Fingerprint Identification", desc: "System identity check validating your pre-filled details with national administrative identity networks.", tip: "Make sure all spellings on your printout exactly mirror your citizenship document." },
+        { step: 2, room: "Counter 5 – Main Cashier", floor: "Ground Floor Yard Window", title: "Revenue Invoicing", desc: "Processing of necessary processing fees against your registration tracking file sequence.", tip: "Exact changes save hours of standing in queue lines here." },
+        { step: 3, room: "Room 202 – Medical Board", floor: "Second Floor Right", title: "Ocular & Basic Health Inspection", desc: "Standardized physical validation including letter grid viewing boards and color wheel verification matrices.", tip: null },
+        { step: 4, room: "Room 205 – Final Approval Desk", floor: "Second Floor Left Corner", title: "Admit Card Distribution", desc: "Logs your physical profile into the schedule file system, completing the inside-office routing procedure.", tip: null }
+      ]
+    },
+    ne: {
+      ekantakuna: [
+        { step: 1, room: "कोठा नं. १०२ – मुख्य भवन", floor: "भुइँ तल्ला", title: "कागजात प्रमाणीकरण र बायोमेट्रिक", desc: "आफ्नो अनलाइन आवेदन फारमको प्रतिलिपि र नागरिकताको सक्कल प्रमाणपत्र पेश गर्नुहोस्। यहाँ फोटो र डिजिटल औंठाछाप लिइनेछ।", tip: "समय भन्दा २० मिनेट अगाडि पुग्नुहोला; ग्यालरी विन्डो बाहिर लामो लाइन हुन सक्छ।" },
+        { step: 2, room: "काउन्टर ४ – नगद संकलन", floor: "मुख्य चोक हल", title: "राजस्व तथा दस्तुर भुक्तानी", desc: "बायोमेट्रिक प्रमाणीकरण सम्पन्न भएपछि प्राप्त टोकन बुझाएर यहाँ आवेदन दस्तुर चुक्ता गर्नुहोस्।", tip: "सकेसम्म ५०० वा १००० को खुद्रा रूपैयाँ साथमा राख्नुहोला। डिजिटल भुक्तानी प्रणाली कहिलेकाहीँ अवरुद्ध हुन सक्छ।" },
+        { step: 3, room: "कोठा नं. १०८ – स्वास्थ्य कक्ष", floor: "पहिलो तल्ला (बायाँ विंग)", title: "आँखा तथा सामान्य स्वास्थ्य परीक्षण", desc: "इशिहारा प्लेटहरू प्रयोग गरी रङ पहिचान (कलर ब्लाइन्डनेस) र सामान्य दृष्टि क्षमता परीक्षण।", tip: null },
+        { step: 4, room: "विन्डो १२ – दर्ता शाखा", floor: "बाहिरी परिसर गेट", title: "प्रवेश पत्र (Admit Card) वितरण", desc: "लिखित परीक्षा वा प्रयोगात्मक (ट्रायल) परीक्षाको लागि स्वीकृत छाप लगाइएको आधिकारिक प्रवेश पत्र संकलन गर्नुहोस्।", tip: null }
+      ],
+      thulobharyang: [
+        { step: 1, room: "कोठा नं. १ – दर्ता काउन्टर", floor: "भुइँ तल्ला (दायाँ ब्लक)", title: "बायोमेट्रिक दर्ता", desc: "तपाईंको अनलाइन DOTM पोर्टलको आवेदन नम्बर र भौतिक नागरिकता प्रमाणपत्र विवरणहरूको रुजु।", tip: "बायोमेट्रिक खिच्ने बेला आफ्नो स्पष्ट पहिचान देखिने गरी बस्नुहोला, यही फोटो स्मार्ट कार्डमा आउनेछ।" },
+        { step: 2, room: "काउन्टर ३ – राजस्व शाखा", floor: "भुइँ तल्ला (केन्द्रीय)", title: "राजस्व दस्तुर बुझाउने", desc: "कार्यालयका कर्मचारीलाई तोकिएको प्रक्रियागत शुल्क बुझाई कम्प्युटरकृत रसिद प्राप्त गर्नुहोस्।", tip: null },
+        { step: 3, room: "कोठा नं. ५ – दृष्टि परीक्षण कक्ष", floor: "दोस्रो तल्ला", title: "आँखा जाँच तथा स्वास्थ्य अनुमति", desc: "सवारी चलाउन योग्य दृष्टि र सामान्य शारीरिक तन्दुरुस्ती प्रमाणीकरण।", tip: null },
+        { step: 4, room: "कोठा नं. ९ – प्रमाणीकरण केन्द्र", floor: "दोस्रो तल्ला (पछाडिको भाग)", title: "लिखित परीक्षा कोटा निर्धारण र प्रवेश पत्र", desc: "विवरणहरू प्रणालीमा सुरक्षित गरी परीक्षाको लागि आधिकारिक प्रवेश पत्र जारी गर्ने अन्तिम चरण।", tip: "यो कागजातमा छापिएको परीक्षा केन्द्रको ठेगाना राम्ररी नोट गर्नुहोस्।" }
+      ],
+      chabahil: [
+        { step: 1, room: "कोठा बी१ – बायोमेट्रिक कक्ष", floor: "भूमिगत / भुइँ तल्ला प्रवेशद्वार", title: "कागजात रुजु तथा औंठाछाप दर्ता", desc: "अनलाइन टोकन दर्ता, नागरिकता अभिलेखको प्रमाणिकरण, र डिजिटल बायोमेट्रिक रेकर्डिङ।", tip: "यहाँ आउँदा आधिकारिक प्रयोगशालाबाट प्रमाणित ब्लड ग्रुप (रगत समूह) रिपोर्ट साथमा राख्नुहोला।" },
+        { step: 2, room: "काउन्टर २ – बिलिङ विन्डो", floor: "भुइँ तल्ला (अगाडिको लबी)", title: "राजस्व दाखिला दस्तुर", desc: "तपाईंको फाइल अगाडि बढाउन र परीक्षा प्रक्रिया सहज बनाउन काउन्टरमा शुल्क बुझाउनुहोस्।", tip: "यो सक्कल रसिद सुरक्षित राख्नुहोस्; परीक्षा केन्द्रमा प्रवेश गर्दा यो अनिवार्य रूपमा चाहिन्छ।" },
+        { step: 3, room: "कोठा नं. १०४ – परीक्षण केन्द्र", floor: "पहिलो तल्ला (बीचको ग्यालरी)", title: "स्वास्थ्य तथा दृष्टि स्क्रिनिङ", desc: "रङ पहिचान क्षमता र सामान्य श्वासप्रश्वास/दृष्टि मापदण्डको द्रुत परीक्षण।", tip: null },
+        { step: 4, room: "कोठा नं. १०६ – प्रमुख अधिकृत कक्ष", floor: "पहिलो तल्ला (अन्तिम खण्ड)", title: "प्रवेश पत्र अन्तिम प्रमाणीकरण", desc: "प्रशासनिक अधिकारीद्वारा स्वीकृतिको छाप लगाएर परीक्षा प्रवेश पत्र हस्तान्तरण गर्ने कार्य।", tip: null }
+      ],
+      bhaktapur: [
+        { step: 1, room: "काउन्टर १ – स्वागत तथा दर्ता", floor: "भुइँ तल्ला (ब्लक ए)", title: "कागजात जाँच र औंठाछाप पहिचान", desc: "तपाईंको अनलाइन फारम विवरणहरूलाई राष्ट्रिय परिचयपत्र तथा नागरिकता डाटाबेसतर्फ रुजु गर्ने।", tip: "प्रिन्ट गरिएको फारममा नाम र जन्ममिति नागरिकतासँग दुरुस्त मिलेको निश्चित गर्नुहोस्।" },
+        { step: 2, room: "काउन्टर ५ – मुख्य क्यासियर", floor: "भुइँ तल्ला (चोक विन्डो)", title: "राजस्व चलान र इनभ्वाइस", desc: "आवेदन दर्ता प्रक्रिया बापतको आवश्यक राजस्व संकलन र कम्प्युटर बिलिङ।", tip: "खुद्रा पैसा बोक्दा लामो लाइनमा समय बचत हुनेछ।" },
+        { step: 3, room: "कोठा नं. २०२ – मेडिकल बोर्ड", floor: "दोस्रो तल्ला (दायाँ भाग)", title: "दृष्टि र प्राथमिक स्वास्थ्य परीक्षण", desc: "वर्णमाला चार्ट, दृष्टि मापन बोर्ड, र कलर व्हील प्रणाली मार्फत आँखाको जाँच।", tip: null },
+        { step: 4, room: "कोठा नं. २०५ – अन्तिम स्वीकृति कक्ष", floor: "दोस्रो तल्ला (बायाँ कुना)", title: "प्रवेश पत्र वितरण", desc: "तपाईंको प्रोफाइललाई प्रणालीको परीक्षा तालिकामा दर्ता गरी प्रक्रिया सम्पन्न गर्ने।", tip: null }
+      ]
+    }
+  };
+
+  function updateStaticUI() {
+    const labels = uiLabels[currentLang];
+    document.title = labels.title;
+    document.getElementById('txt-portal-tag').textContent = labels.portalTag;
+    document.getElementById('nav-home').textContent = labels.home;
+    document.getElementById('nav-services').textContent = labels.services;
+    document.getElementById('nav-offices').textContent = labels.offices;
+    document.getElementById('nav-forms').textContent = labels.forms;
+    document.getElementById('nav-guidance').textContent = labels.guidance;
+    document.getElementById('nav-contact').textContent = labels.contact;
+    document.getElementById('btn-login-txt').textContent = labels.login;
+    document.getElementById('txt-eyebrow').textContent = labels.eyebrow;
+    document.getElementById('txt-heading').textContent = labels.heading;
+    document.getElementById('txt-select-label').textContent = labels.selectLabel;
+  }
+
+  function updateDropdownOptions() {
+    const selector = document.getElementById('office-select');
+    const previousValue = selector.value;
+    
+    const options = dropdownOptions[currentLang];
+    selector.innerHTML = options.map(opt => `
+      <option value="${opt.value}">${opt.text}</option>
+    `).join('');
+
+    if (previousValue && options.some(o => o.value === previousValue)) {
+      selector.value = previousValue;
+    } else {
+      selector.value = options[0].value;
+    }
+  }
+
+  function renderTimeline() {
+    const selector = document.getElementById('office-select');
+    const container = document.getElementById('timeline-target');
+    const officeKey = selector.value || 'ekantakuna';
+    
+    const selectedSteps = routesData[currentLang][officeKey];
+    const tipWord = uiLabels[currentLang].tipLabel;
+
+    container.innerHTML = selectedSteps.map(s => `
+      <div class="timeline-step">
+        <div class="timeline-badge">${s.step}</div>
+        <div class="step-header">
+          <span class="step-room">${s.room}</span>
+          <span class="step-location-badge">${s.floor}</span>
+        </div>
+        <div class="step-title">${s.title}</div>
+        <p class="step-instruction">${s.desc}</p>
+        ${s.tip ? `<div class="step-tip"><strong>${tipWord}:</strong> ${s.tip}</div>` : ''}
+      </div>
+    `).join('');
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-ne').classList.toggle('active', lang === 'ne');
+    
+    updateStaticUI();
+    updateDropdownOptions();
+    renderTimeline();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnEn = document.getElementById('lang-en');
+    const btnNe = document.getElementById('lang-ne');
+
+    btnEn.addEventListener('click', () => setLanguage('en'));
+    btnNe.addEventListener('click', () => setLanguage('ne'));
+    
+    document.getElementById('office-select').addEventListener('change', renderTimeline);
+    setLanguage('en');
+  });
+</script>
+</body>
+</html>
